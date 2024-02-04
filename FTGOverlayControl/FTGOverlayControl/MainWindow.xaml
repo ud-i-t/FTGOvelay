@@ -1,0 +1,39 @@
+﻿<Window x:Class="FTGOverlayControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FTGOverlayControl"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="400">
+    <Window.DataContext>
+        <local:MainVm></local:MainVm>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="D1" Modifiers="" Command="{Binding AddScore1}"></KeyBinding>
+        <KeyBinding Key="D2" Modifiers="" Command="{Binding AddScore2}"></KeyBinding>
+    </Window.InputBindings>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                <TextBlock Width="100">Center Text:</TextBlock>
+                <TextBox x:Name="CenterTextInput" Width="180"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,0,10,10">
+                <TextBlock Width="100">Match point:</TextBlock>
+                <TextBox x:Name="MatchPointInput" Width="180"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock>Player1</TextBlock>
+                    <local:PlayerView DataContext="{Binding Player1}"></local:PlayerView>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock>Player2</TextBlock>
+                    <local:PlayerView DataContext="{Binding Player2}"></local:PlayerView>
+                </StackPanel>
+            </StackPanel>
+            <Button x:Name="ResetScore1" Command="{Binding ResetScore}" Margin="10">Reset</Button>
+        </StackPanel>
+    </Grid>
+</Window>
