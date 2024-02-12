@@ -26,6 +26,58 @@ namespace FTGOverlayControl
             }
         }
 
+        private string _copy = "";
+        public string Copy
+        {
+            get { return _copy; }
+            set
+            {
+                _copy = value;
+                _setting.Copy = value;
+                _onChange();
+                OnPropertyChanged(nameof(Copy));
+            }
+        }
+
+        private string _character = "";
+        public string Character
+        {
+            get { return _character; }
+            set
+            {
+                _character = value;
+                _setting.Character = value;
+                _onChange();
+                OnPropertyChanged(nameof(Character));
+            }
+        }
+
+        private string _controlType = "";
+        public string ControlType
+        {
+            get { return _controlType; }
+            set
+            {
+                _controlType = value;
+                _setting.ControlType = value;
+                _onChange();
+                OnPropertyChanged(nameof(ControlType));
+            }
+        }
+
+        private string _rank = "";
+        public string Rank
+        {
+            get { return _rank; }
+            set
+            {
+                _rank = value;
+                _setting.Rank = value;
+                _onChange();
+                OnPropertyChanged(nameof(Rank));
+            }
+        }
+
         private int _score;
         public int Score
         {
@@ -71,6 +123,10 @@ namespace FTGOverlayControl
             Name = _setting.Name;
             Score = _setting.Score;
             File = _setting.FilePath;
+            Character = _setting.Character;
+            ControlType = _setting.ControlType;
+            Rank = _setting.Rank;
+
             IncrementScore = new RelayCommand(_ => 
             { 
                 Score++;

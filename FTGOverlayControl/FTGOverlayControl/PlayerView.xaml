@@ -25,16 +25,16 @@
             <Button x:Name="RemoveScore1" Width="20" Command="{Binding DecrementScore}">-</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="5 10 5 0">
-            <TextBlock Width="40">Attr1:</TextBlock>
-            <TextBox x:Name="Attr1" Width="140" Text="{Binding Attr1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Width="40">Character:</TextBlock>
+            <TextBox x:Name="Attr1" Width="140" Text="{Binding Character, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="5 10 5 0">
-            <TextBlock Width="40">Attr2:</TextBlock>
-            <TextBox x:Name="Attr2" Width="140" Text="{Binding Attr2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Width="40">ControlType:</TextBlock>
+            <TextBox x:Name="Attr2" Width="140" Text="{Binding ControlType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="5 10 5 0">
-            <TextBlock Width="40">Attr3:</TextBlock>
-            <TextBox x:Name="Attr3" Width="140" Text="{Binding Attr3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Width="40">Rank:</TextBlock>
+            <TextBox x:Name="Attr3" Width="140" Text="{Binding Rank, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <ComboBox Name="PlayerComboBox" Margin="5 10 5 0" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding Players}"/>
     </StackPanel>
