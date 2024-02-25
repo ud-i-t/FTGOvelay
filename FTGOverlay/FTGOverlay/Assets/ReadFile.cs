@@ -34,9 +34,16 @@ public class ReadFile : MonoBehaviour
             var data = LoadFromXmlFile("./settings.xml");
             Player1.Name = data.Players[0].Name;
             Player2.Name = data.Players[1].Name;
-            Score1.Value = data.Players[0].Score;
-            Score2.Value = data.Players[1].Score;
-            InfoText.text = data.InfoText;
+            Player1.Rank = data.Players[0].Rank;
+            Player2.Rank = data.Players[1].Rank;
+            Player1.Character = data.Players[0].Character;
+            Player2.Character = data.Players[1].Character;
+            Player1.ControlType = data.Players[0].ControlType;
+            Player2.ControlType = data.Players[1].ControlType;
+
+            if (Score1) Score1.Value = data.Players[0].Score;
+            if (Score2) Score2.Value = data.Players[1].Score;
+            if (InfoText) InfoText.text = data.InfoText;
 
             yield return new WaitForSeconds(1f);
         }

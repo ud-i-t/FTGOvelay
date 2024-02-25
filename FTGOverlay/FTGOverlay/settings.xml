@@ -2,12 +2,20 @@
 <SettingFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Players>
     <PlayerSetting>
-      <Name>推理ロボKQGE</Name>
-      <Score>9</Score>
+      <Name>森ユーディ</Name>
+      <Score>0</Score>
+      <FilePath>D:\制作物\Youtube\素材\vts-2024-01-04_17h01_34.png</FilePath>
+      <Character>エド</Character>
+      <ControlType>クラシック</ControlType>
+      <Rank>プラチナ4</Rank>
     </PlayerSetting>
     <PlayerSetting>
-      <Name>森ユーディ</Name>
-      <Score>5</Score>
+      <Name>エルトリシア</Name>
+      <Score>0</Score>
+      <FilePath>D:\制作物\Youtube\素材\k0852_1.png</FilePath>
+      <Character>キャミィ</Character>
+      <ControlType>モダン</ControlType>
+      <Rank>マスター (MR1500)</Rank>
     </PlayerSetting>
   </Players>
   <InfoText>決勝戦</InfoText>
