@@ -35,5 +35,6 @@
             </StackPanel>
             <Button x:Name="ResetScore1" Command="{Binding ResetScore}" Margin="10">Reset</Button>
         </StackPanel>
+        <Button x:Name="UpdateScreen" Command="{Binding UpdateScreenCommand}" Height="44" VerticalAlignment="Bottom" Margin="10">UpdateScreen</Button>
     </Grid>
 </Window>

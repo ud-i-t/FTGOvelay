@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy $(ProjectDir)template $(OutDir)template /s /i /y&#xD;&#xA;xcopy $(ProjectDir)template $(OutDir)output /s /i /y" />
+  </Target>
+
 </Project>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace FTGOverlayControl
@@ -15,6 +17,7 @@ namespace FTGOverlayControl
         public RelayCommand ResetScore { get; private set; }
         public RelayCommand AddScore1 { get; private set; }
         public RelayCommand AddScore2 { get; private set; }
+        public RelayCommand UpdateScreenCommand { get; private set; }
 
         private SettingFile _file;
 
@@ -42,11 +45,34 @@ namespace FTGOverlayControl
             {
                 Player2.Score++;
             }, _ => true);
+
+            UpdateScreenCommand = new RelayCommand(_ => UpdateScreen(), _ => true);
         }
 
         private void Save() 
         {
             SettingFileReader.Save(_file);
+        }
+
+        private void UpdateScreen()
+        {
+            using (StreamReader sr = new StreamReader(@"template/overlay.html"))
+            using (StreamWriter sw = new StreamWriter(@"output/overlay.html", false))
+            {
+                var line = sr.ReadLine();
+
+                while (line != null)
+                {
+                    var outString = line.Replace(@"{player1Name}", Player1.Name);
+                    outString = outString.Replace(@"{player2Name}", Player2.Name);
+                    outString = outString.Replace(@"{player1Score}", Player1.Score.ToString());
+                    outString = outString.Replace(@"{player1Score}", Player1.Score.ToString());
+                    sw.WriteLine(outString);
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+                sw.Close();
+            }
         }
     }
 }
