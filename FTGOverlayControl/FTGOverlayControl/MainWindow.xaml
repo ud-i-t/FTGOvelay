@@ -16,8 +16,12 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                <TextBlock Width="100">Center Text:</TextBlock>
-                <TextBox x:Name="CenterTextInput" Width="180"></TextBox>
+                <TextBlock Width="100">Center Top Text:</TextBlock>
+                <TextBox x:Name="CenterTopInput" Width="180" Text="{Binding CenterTopText}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+                <TextBlock Width="100">Center Bottom Text:</TextBlock>
+                <TextBox x:Name="CenterBottomInput" Width="180" Text="{Binding CenterBottomText}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,0,10,10">
                 <TextBlock Width="100">Match point:</TextBlock>

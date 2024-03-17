@@ -11,4 +11,10 @@
     <Exec Command="xcopy $(ProjectDir)template $(OutDir)template /s /i /y&#xD;&#xA;xcopy $(ProjectDir)template $(OutDir)output /s /i /y" />
   </Target>
 
+  <ItemGroup>
+    <Reference Include="CSVReader">
+      <HintPath>..\..\..\CommandEditor\Kakeibo\Kakeibo\CSVReader.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

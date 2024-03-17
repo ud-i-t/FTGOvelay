@@ -19,12 +19,18 @@ namespace FTGOverlayControl
         public RelayCommand AddScore2 { get; private set; }
         public RelayCommand UpdateScreenCommand { get; private set; }
 
+        public string CenterTopText { get; set; }
+        public string CenterBottomText { get; set; }
+
         private SettingFile _file;
 
         public MainVm() 
         {
-            _file = SettingFileReader.Load();
-            var players = new PlayerListReader("players.txt").Read();
+            _file = new SettingFile();
+            _file.Players.Add(new PlayerSetting());
+            _file.Players.Add(new PlayerSetting());
+
+            var players = new PlayerListReader("players.csv").Read();
 
             Player1 = new PlayerViewModel(_file.Players[0], Save, players);
             Player2 = new PlayerViewModel(_file.Players[1], Save, players);
@@ -51,7 +57,7 @@ namespace FTGOverlayControl
 
         private void Save() 
         {
-            SettingFileReader.Save(_file);
+            // SettingFileReader.Save(_file);
         }
 
         private void UpdateScreen()
@@ -66,7 +72,35 @@ namespace FTGOverlayControl
                     var outString = line.Replace(@"{player1Name}", Player1.Name);
                     outString = outString.Replace(@"{player2Name}", Player2.Name);
                     outString = outString.Replace(@"{player1Score}", Player1.Score.ToString());
-                    outString = outString.Replace(@"{player1Score}", Player1.Score.ToString());
+                    outString = outString.Replace(@"{player2Score}", Player2.Score.ToString());
+                    outString = outString.Replace(@"{CenterTopText}", CenterTopText);
+                    outString = outString.Replace(@"{CenterBottomText}", CenterBottomText);
+                    sw.WriteLine(outString);
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+                sw.Close();
+            }
+
+            using (StreamReader sr = new StreamReader(@"template/matchup.html"))
+            using (StreamWriter sw = new StreamWriter(@"output/matchup.html", false))
+            {
+                var line = sr.ReadLine();
+
+                while (line != null)
+                {
+                    var outString = line.Replace(@"{player1Name}", Player1.Name);
+                    outString = outString.Replace(@"{player2Name}", Player2.Name);
+                    outString = outString.Replace(@"{player1Copy}", Player1.Copy);
+                    outString = outString.Replace(@"{player2Copy}", Player2.Copy);
+                    outString = outString.Replace(@"{player1Image}", Player1.File);
+                    outString = outString.Replace(@"{player2Image}", Player2.File);
+                    outString = outString.Replace(@"{player1Attr1}", Player1.Character);
+                    outString = outString.Replace(@"{player1Attr2}", Player1.Rank);
+                    outString = outString.Replace(@"{player1Attr3}", Player1.ControlType);
+                    outString = outString.Replace(@"{player2Attr1}", Player2.Character);
+                    outString = outString.Replace(@"{player2Attr2}", Player2.Rank);
+                    outString = outString.Replace(@"{player2Attr3}", Player2.ControlType);
                     sw.WriteLine(outString);
                     line = sr.ReadLine();
                 }
