@@ -10,8 +10,8 @@
         <local:MainVm></local:MainVm>
     </Window.DataContext>
     <Window.InputBindings>
-        <KeyBinding Key="D1" Modifiers="" Command="{Binding AddScore1}"></KeyBinding>
-        <KeyBinding Key="D2" Modifiers="" Command="{Binding AddScore2}"></KeyBinding>
+        <!--<KeyBinding Key="D1" Modifiers="" Command="{Binding AddScore1}"></KeyBinding>
+        <KeyBinding Key="D2" Modifiers="" Command="{Binding AddScore2}"></KeyBinding>-->
     </Window.InputBindings>
     <Grid>
         <StackPanel Orientation="Vertical">

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Shapes;
 using static System.Formats.Asn1.AsnWriter;
@@ -23,9 +24,28 @@ namespace FTGOverlayControl
         public string CenterBottomText { get; set; }
 
         private SettingFile _file;
+        private KeyboardHook hook = new KeyboardHook();
 
-        public MainVm() 
+        public MainVm()
         {
+            hook.KeyDownEvent += (sender, e) =>
+            {
+                if (e.KeyCode == 0x30)
+                {
+                    Player1.Score = 0;
+                    Player2.Score = 0;
+                }
+                if (e.KeyCode == 0x31)
+                {
+                    Player1.Score++;
+                }
+                if (e.KeyCode == 0x32)
+                {
+                    Player2.Score++;
+                }
+            };
+            hook.Hook();
+
             _file = new SettingFile();
             _file.Players.Add(new PlayerSetting());
             _file.Players.Add(new PlayerSetting());
@@ -42,7 +62,7 @@ namespace FTGOverlayControl
                 Save();
             }, _ => true);
 
-            AddScore1 = new RelayCommand(_ => 
+            AddScore1 = new RelayCommand(_ =>
             {
                 Player1.Score++;
             }, _ => true);
@@ -55,7 +75,7 @@ namespace FTGOverlayControl
             UpdateScreenCommand = new RelayCommand(_ => UpdateScreen(), _ => true);
         }
 
-        private void Save() 
+        private void Save()
         {
             // SettingFileReader.Save(_file);
         }
