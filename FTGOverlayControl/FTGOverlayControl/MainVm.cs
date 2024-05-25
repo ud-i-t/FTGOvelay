@@ -34,14 +34,17 @@ namespace FTGOverlayControl
                 {
                     Player1.Score = 0;
                     Player2.Score = 0;
+                    UpdateScreen();
                 }
                 if (e.KeyCode == 0x31)
                 {
                     Player1.Score++;
+                    UpdateScreen();
                 }
                 if (e.KeyCode == 0x32)
                 {
                     Player2.Score++;
+                    UpdateScreen();
                 }
             };
             hook.Hook();
@@ -59,7 +62,6 @@ namespace FTGOverlayControl
             {
                 Player1.Score = 0;
                 Player2.Score = 0;
-                Save();
             }, _ => true);
 
             AddScore1 = new RelayCommand(_ =>
@@ -95,6 +97,14 @@ namespace FTGOverlayControl
                     outString = outString.Replace(@"{player2Score}", Player2.Score.ToString());
                     outString = outString.Replace(@"{CenterTopText}", CenterTopText);
                     outString = outString.Replace(@"{CenterBottomText}", CenterBottomText);
+                    outString = outString.Replace(@"{player1Image}", Player1.File);
+                    outString = outString.Replace(@"{player2Image}", Player2.File);
+                    outString = outString.Replace(@"{player1Attr1}", Player1.Character);
+                    outString = outString.Replace(@"{player1Attr2}", Player1.Rank);
+                    outString = outString.Replace(@"{player1Attr3}", Player1.ControlType);
+                    outString = outString.Replace(@"{player2Attr1}", Player2.Character);
+                    outString = outString.Replace(@"{player2Attr2}", Player2.Rank);
+                    outString = outString.Replace(@"{player2Attr3}", Player2.ControlType);
                     sw.WriteLine(outString);
                     line = sr.ReadLine();
                 }
