@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 try
 {
@@ -28,10 +29,23 @@ try
                     ".html" => "text/html",
                     ".png" => "image/png",
                     ".js" => "text/javascript",
-                    _ => "text/plain"
+                    ".json" => "application/json",
+                    _ => string.Empty
                 };
 
-                string path = $"{AppDomain.CurrentDomain.BaseDirectory}{request.Url.LocalPath}";
+                if (response.ContentType == null || response.ContentType == string.Empty)
+                {
+                    throw new FileNotFoundException();
+                }
+
+                string contentsDir = Path.GetFullPath($"{AppDomain.CurrentDomain.BaseDirectory}/contents/");
+                string path = Path.GetFullPath(contentsDir + request.Url.LocalPath);
+
+                if (!path.StartsWith(contentsDir, StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new Exception("invalid path.");
+                }
+
                 using (Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     int count = -1; byte[] buffer = new byte[4096];
@@ -42,6 +56,7 @@ try
             catch (FileNotFoundException e)
             {
                 Console.WriteLine(e.Message);
+                response.StatusCode = 404;
             }
         }
         else
