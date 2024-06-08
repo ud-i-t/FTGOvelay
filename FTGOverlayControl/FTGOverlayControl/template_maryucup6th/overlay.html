@@ -38,7 +38,7 @@
 
 
 	// functions
-	function createPlayerImages(fileName) {
+	function createPlayerImage(fileName) {
 		var img = document.createElement("img");
 		img.setAttribute("src", fileName);
 		img.style.display = "none";
@@ -95,14 +95,14 @@
 		{
 			player = player1Elements.image;
 			players.forEach(element => {
-				let img = createPlayerImages("players/" + element.player + "_L.png");
+				let img = createPlayerImage("players/" + element.player + "_L.png");
 				player.appendChild(img);
 			});
 		}
 		{
 			player = player2Elements.image;
 			players.forEach(element => {
-				let img = createPlayerImages("players/" + element.player + "_R.png");
+				let img = createPlayerImage("players/" + element.player + "_R.png");
 				player.appendChild(img);
 			});
 		}
