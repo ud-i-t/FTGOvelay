@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using FTGOverlayControl.Model;
+using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
 
