@@ -50,32 +50,34 @@ namespace FTGOverlayControl
             };
             hook.Hook();
 
-            _file = new SettingFile();
-            _file.Players.Add(new PlayerSetting());
-            _file.Players.Add(new PlayerSetting());
+            //_file = new SettingFile();
+            //_file.Players.Add(new PlayerSetting());
+            //_file.Players.Add(new PlayerSetting());
 
-            var players = new PlayerListReader("players.csv").Read();
+            //var players = new PlayerListReader("players.csv").Read();
 
-            Player1 = new PlayerViewModel(_file.Players[0], Save, players);
-            Player2 = new PlayerViewModel(_file.Players[1], Save, players);
+            //Player1 = new PlayerViewModel(_file.Players[0], Save, players);
+            //Player2 = new PlayerViewModel(_file.Players[1], Save, players);
 
-            ResetScore = new RelayCommand(_ =>
-            {
-                Player1.Score = 0;
-                Player2.Score = 0;
-            }, _ => true);
+            //ResetScore = new RelayCommand(_ =>
+            //{
+            //    Player1.Score = 0;
+            //    Player2.Score = 0;
+            //}, _ => true);
 
-            AddScore1 = new RelayCommand(_ =>
-            {
-                Player1.Score++;
-            }, _ => true);
+            //AddScore1 = new RelayCommand(_ =>
+            //{
+            //    Player1.Score++;
+            //}, _ => true);
 
-            AddScore2 = new RelayCommand(_ =>
-            {
-                Player2.Score++;
-            }, _ => true);
+            //AddScore2 = new RelayCommand(_ =>
+            //{
+            //    Player2.Score++;
+            //}, _ => true);
 
             UpdateScreenCommand = new RelayCommand(_ => UpdateScreen(), _ => true);
+
+            var players = JsonSample.JsonUtilSample.Read<PlayerDatas>("players.json");
 
             var setting = JsonSample.JsonUtilSample.Read<OverlaySetting>("score.json");
             setting.player2 = 1;
