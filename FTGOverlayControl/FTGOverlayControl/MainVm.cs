@@ -49,10 +49,6 @@ namespace FTGOverlayControl
             };
             hook.Hook();
 
-            //var players = new PlayerListReader("players.csv").Read();
-            //Player1 = new PlayerViewModel(_file.Players[0], Save, players);
-            //Player2 = new PlayerViewModel(_file.Players[1], Save, players);
-
             ResetScore = new RelayCommand(_ =>
             {
                 Player1.Score = 0;
@@ -72,6 +68,8 @@ namespace FTGOverlayControl
             UpdateScreenCommand = new RelayCommand(_ => UpdateScreen(), _ => true);
 
             var players = JsonSample.JsonUtilSample.Read<PlayerDatas>("players.json");
+            Player1 = new PlayerViewModel(new PlayerSetting(), UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
+            Player2 = new PlayerViewModel(new PlayerSetting(), UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
 
             var setting = JsonSample.JsonUtilSample.Read<OverlaySetting>("score.json");
             setting.player2 = 1;
