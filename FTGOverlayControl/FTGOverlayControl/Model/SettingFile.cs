@@ -14,10 +14,3 @@ public class PlayerSetting
     public string ControlType { get; set; }
     public string Rank { get; set; }
 }
-
-[Serializable]
-public class SettingFile
-{
-    public List<PlayerSetting> Players { get; } = new List<PlayerSetting>();
-    public string InfoText { get; set; }
-}

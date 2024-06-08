@@ -11,30 +11,10 @@
             <TextBlock Width="40">Name:</TextBlock>
             <TextBox x:Name="Player1Name" Width="140" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5 10 5 0" Visibility="Collapsed">
-            <TextBlock Width="40">Copy:</TextBlock>
-            <TextBox x:Name="Player1Copy" Width="140" Text="{Binding Copy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5 10 5 0" Visibility="Collapsed">
-            <TextBox Name="FilePath" Width="140" IsReadOnly="True" Text="{Binding File, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"></TextBox>
-            <Button Name="ChooseImage" Click="ChooseImage_Click" Width="30">...</Button>
-        </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="5 10 5 0">
             <TextBox x:Name="Score1" Text="{Binding Score, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
             <Button x:Name="AddScore1" Width="20" Command="{Binding IncrementScore}">+</Button>
             <Button x:Name="RemoveScore1" Width="20" Command="{Binding DecrementScore}">-</Button>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5 10 5 0" Visibility="Collapsed">
-            <TextBlock Width="40">Character:</TextBlock>
-            <TextBox x:Name="Attr1" Width="140" Text="{Binding Character, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5 10 5 0" Visibility="Collapsed">
-            <TextBlock Width="40">ControlType:</TextBlock>
-            <TextBox x:Name="Attr2" Width="140" Text="{Binding ControlType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5 10 5 0" Visibility="Collapsed">
-            <TextBlock Width="40">Rank:</TextBlock>
-            <TextBox x:Name="Attr3" Width="140" Text="{Binding Rank, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <ComboBox Name="PlayerComboBox" Margin="5 10 5 0" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding Players}"/>
     </StackPanel>
