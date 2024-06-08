@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -75,6 +76,10 @@ namespace FTGOverlayControl
             }, _ => true);
 
             UpdateScreenCommand = new RelayCommand(_ => UpdateScreen(), _ => true);
+
+            var setting = JsonSample.JsonUtilSample.Read<OverlaySetting>("score.json");
+            setting.player2 = 1;
+            JsonSample.JsonUtilSample.ToJson("score2.json", setting);
         }
 
         private void Save()
