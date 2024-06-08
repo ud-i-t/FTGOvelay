@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>魔竜杯6th</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="playerName1" class="playerName"></div>
+	<div id="playerName2" class="playerName"></div>
+	<div id="player1" class="player">
+	</div>
+	<div id="player2" class="player">
+	</div>
+	<img src="score.png" class="score" style="left: 0;">
+	<img src="score.png" class="score" style="right: 0; transform: scale(-1, 1);">
+	<div id="score1" class="score">1</div>
+	<div id="score2" class="score">2</div>
+	<img src="team_icon/teamA.png" class="teamLogo" style="left: 0;">
+	<img src="team_icon/teamB.png" class="teamLogo" style="right: 0;">
+</div>
+</body>
+
+<script>
+	const player1Elements = {
+			name : document.getElementById("playerName1"),
+			image : document.getElementById("player1"),
+			index : -1
+		}
+	const score1 = document.getElementById("score1");
+	const player2Elements = {
+			name : document.getElementById("playerName2"),
+			image : document.getElementById("player2"),
+			index : -1
+		}
+	const score2 = document.getElementById("score2");
+
+
+	// functions
+	function createPlayerImages(fileName) {
+		var img = document.createElement("img");
+		img.setAttribute("src", fileName);
+		img.style.display = "none";
+		return img;
+	}
+
+	function switchPlayer(elements, index) {
+		if (elements.index == index)
+		{
+			return;
+		}
+
+		if (elements.index >= 0)
+		{
+			elements.image.children[elements.index].style.display = "none";
+		}
+		elements.image.children[index].style.display = "block";
+		elements.name.innerHTML = players[index].name;
+		elements.index = index;
+	}
+
+	function updateText() {
+		let obj;
+		readScore = async() =>{
+			const response = await fetch('score.json');
+			const data = await response.text();
+			obj = JSON.parse(data);
+		}
+		readScore().then(() => 
+		{
+			const newP1Index = obj["player1"];
+			switchPlayer(player1Elements, newP1Index);
+			const newP2Index = obj["player2"];
+			switchPlayer(player2Elements, newP2Index);
+
+			score1.innerHTML = obj["score1"];
+			score2.innerHTML = obj["score2"];
+		});
+	}
+
+	function main()	{
+		updateText();
+		setInterval(updateText, 1000);
+	}
+
+	let players;
+	readPlayers = async() =>{
+		const response = await fetch('players.json');
+		const data = await response.text();
+		const obj = JSON.parse(data);
+		players = obj["players"];
+		console.log(players);
+
+		{
+			player = player1Elements.image;
+			players.forEach(element => {
+				let img = createPlayerImages("players/" + element.player + "_L.png");
+				player.appendChild(img);
+			});
+		}
+		{
+			player = player2Elements.image;
+			players.forEach(element => {
+				let img = createPlayerImages("players/" + element.player + "_R.png");
+				player.appendChild(img);
+			});
+		}
+	}
+	readPlayers().then(main);
+
+</script>
+
+</html>

@@ -1,0 +1,14 @@
+{
+    "players": [
+        {
+            "name" : "遊城マコ",
+            "player" : "A01",
+            "character" : "deejay.png"
+        },
+        {
+            "name" : "御御御付もずく",
+            "player" : "B01",
+            "character" : "cammy.png"
+        }
+    ]
+}
