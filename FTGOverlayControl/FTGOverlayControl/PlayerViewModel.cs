@@ -21,7 +21,6 @@ namespace FTGOverlayControl
             {
                 _name = value;
                 _setting.Name = value;
-                _onChange();
                 OnPropertyChanged(nameof(Name));
             }
         }
@@ -38,6 +37,17 @@ namespace FTGOverlayControl
             }
         }
 
+        private int _selectedIndex = 0;
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                _selectedIndex = value;
+                OnPropertyChanged(nameof(SelectedIndex));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -47,7 +57,7 @@ namespace FTGOverlayControl
 
         public RelayCommand IncrementScore { get; private set; }
         public RelayCommand DecrementScore { get; private set; }
-        public IEnumerable<PlayerModel> Players { get; } 
+        public IEnumerable<PlayerModel> Players { get; }
 
         public PlayerViewModel(PlayerSetting setting, Action onChange, IEnumerable<PlayerModel> players)
         {

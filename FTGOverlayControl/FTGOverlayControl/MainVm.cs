@@ -14,6 +14,9 @@ namespace FTGOverlayControl
 {
     internal class MainVm
     {
+        private static string PlayerFileName = "contents/players.json";
+        private static string SettingFileName = "contents/score.json";
+
         public PlayerViewModel Player1 { get; }
         public PlayerViewModel Player2 { get; }
         public RelayCommand ResetScore { get; private set; }
@@ -67,18 +70,20 @@ namespace FTGOverlayControl
 
             UpdateScreenCommand = new RelayCommand(_ => UpdateScreen(), _ => true);
 
-            var players = JsonSample.JsonUtilSample.Read<PlayerDatas>("players.json");
-            Player1 = new PlayerViewModel(new PlayerSetting(), UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
-            Player2 = new PlayerViewModel(new PlayerSetting(), UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
-
-            var setting = JsonSample.JsonUtilSample.Read<OverlaySetting>("score.json");
-            setting.player2 = 1;
-            JsonSample.JsonUtilSample.ToJson("score2.json", setting);
+            var players = JsonSample.JsonUtilSample.Read<PlayerDatas>(PlayerFileName);
+            var setting = JsonSample.JsonUtilSample.Read<OverlaySetting>(SettingFileName);
+            Player1 = new PlayerViewModel(new PlayerSetting() { Score = setting.score1 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
+            Player2 = new PlayerViewModel(new PlayerSetting() { Score = setting.score2 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
         }
 
         private void UpdateScreen()
         {
-            
+            var setting = new OverlaySetting();
+            setting.player1 = Player1.SelectedIndex;
+            setting.player2 = Player2.SelectedIndex;
+            setting.score1 = Player1.Score;
+            setting.score2 = Player2.Score;
+            JsonSample.JsonUtilSample.ToJson(SettingFileName, setting);
         }
     }
 }

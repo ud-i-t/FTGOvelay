@@ -16,6 +16,6 @@
             <Button x:Name="AddScore1" Width="20" Command="{Binding IncrementScore}">+</Button>
             <Button x:Name="RemoveScore1" Width="20" Command="{Binding DecrementScore}">-</Button>
         </StackPanel>
-        <ComboBox Name="PlayerComboBox" Margin="5 10 5 0" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding Players}"/>
+        <ComboBox Name="PlayerComboBox" Margin="5 10 5 0" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding Players}" SelectedIndex="{Binding SelectedIndex}"/>
     </StackPanel>
 </UserControl>
