@@ -13,11 +13,11 @@ div.player{
   top: 2px;
 }
 
-div#player1{
+div#player1Images{
   left: 0;
   text-align: right;
 }
-div#player2{
+div#player2Images{
   right: 0;
   text-align: left;
 }

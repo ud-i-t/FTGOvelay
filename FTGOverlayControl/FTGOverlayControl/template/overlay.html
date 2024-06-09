@@ -1,22 +1,24 @@
 ﻿<!DOCTYPE html>
 <meta charset="UTF-8">
-<title>スコア表示</title>
+<title>魔竜杯5th</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
 <div id="wrapper">
-	<div id="centerTopText">{CenterTopText}</div>
 	<div id="player1" class="player">
-		<div id="playerName1" class="playerName">{player1Name}</div>
-		<div id="score1" class="score">{player1Score}</div>
+		<img src="players/{player1Image}_L.png">
 	</div>
 	<div id="player2" class="player">
-		<div id="playerName2" class="playerName">{player2Name}</div>
-		<div id="score2" class="score">{player2Score}</div>
+		<img src="players/{player2Image}_R.png">
 	</div>
-	<div id="centerBottomText">{CenterBottomText}</div>
+	<img src="score.png" class="score" style="left: 0;">
+	<img src="score.png" class="score" style="right: 0; transform: scale(-1, 1);">
+	<div id="score1" class="score">1</div>
+	<div id="score2" class="score">2</div>
+	<img src="team_icon/{player1Attr1}" class="teamLogo" style="left: 0;">
+	<img src="team_icon/{player2Attr1}" class="teamLogo" style="right: 0;">
 </div>
 </body>
 </html>
