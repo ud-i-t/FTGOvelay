@@ -70,8 +70,8 @@ namespace FTGOverlayControl
 
             UpdateScreenCommand = new RelayCommand(_ => UpdateScreen(), _ => true);
 
-            var players = JsonSample.JsonUtilSample.Read<PlayerDatas>(PlayerFileName);
-            var setting = JsonSample.JsonUtilSample.Read<OverlaySetting>(SettingFileName);
+            var players = JsonSettingIO.Read<PlayerDatas>(PlayerFileName);
+            var setting = JsonSettingIO.Read<OverlaySetting>(SettingFileName);
             Player1 = new PlayerViewModel(new PlayerSetting() { Score = setting.score1 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
             Player2 = new PlayerViewModel(new PlayerSetting() { Score = setting.score2 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
         }
@@ -83,7 +83,7 @@ namespace FTGOverlayControl
             setting.player2 = Player2.SelectedIndex;
             setting.score1 = Player1.Score;
             setting.score2 = Player2.Score;
-            JsonSample.JsonUtilSample.ToJson(SettingFileName, setting);
+            JsonSettingIO.ToJson(SettingFileName, setting);
         }
     }
 }
