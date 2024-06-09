@@ -1,12 +1,12 @@
 const player1Elements = {
     name: document.getElementById("playerName1"),
-    image: document.getElementById("player1"),
+    image: document.getElementById("player1Images"),
     index: -1
 }
 const score1 = document.getElementById("score1");
 const player2Elements = {
     name: document.getElementById("playerName2"),
-    image: document.getElementById("player2"),
+    image: document.getElementById("player2Images"),
     index: -1
 }
 const score2 = document.getElementById("score2");

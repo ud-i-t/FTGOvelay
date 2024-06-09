@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +14,9 @@ namespace FTGOverlayControl
 {
     internal class MainVm
     {
+        private static string PlayerFileName = "contents/players.json";
+        private static string SettingFileName = "contents/score.json";
+
         public PlayerViewModel Player1 { get; }
         public PlayerViewModel Player2 { get; }
         public RelayCommand ResetScore { get; private set; }
@@ -23,7 +27,6 @@ namespace FTGOverlayControl
         public string CenterTopText { get; set; }
         public string CenterBottomText { get; set; }
 
-        private SettingFile _file;
         private KeyboardHook hook = new KeyboardHook();
 
         public MainVm()
@@ -49,15 +52,6 @@ namespace FTGOverlayControl
             };
             hook.Hook();
 
-            _file = new SettingFile();
-            _file.Players.Add(new PlayerSetting());
-            _file.Players.Add(new PlayerSetting());
-
-            var players = new PlayerListReader("players.csv").Read();
-
-            Player1 = new PlayerViewModel(_file.Players[0], Save, players);
-            Player2 = new PlayerViewModel(_file.Players[1], Save, players);
-
             ResetScore = new RelayCommand(_ =>
             {
                 Player1.Score = 0;
@@ -75,68 +69,21 @@ namespace FTGOverlayControl
             }, _ => true);
 
             UpdateScreenCommand = new RelayCommand(_ => UpdateScreen(), _ => true);
-        }
 
-        private void Save()
-        {
-            // SettingFileReader.Save(_file);
+            var players = JsonSettingIO.Read<PlayerDatas>(PlayerFileName);
+            var setting = JsonSettingIO.Read<OverlaySetting>(SettingFileName);
+            Player1 = new PlayerViewModel(new PlayerSetting() { Score = setting.score1 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
+            Player2 = new PlayerViewModel(new PlayerSetting() { Score = setting.score2 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
         }
 
         private void UpdateScreen()
         {
-            using (StreamReader sr = new StreamReader(@"template/overlay.html"))
-            using (StreamWriter sw = new StreamWriter(@"output/overlay.html", false))
-            {
-                var line = sr.ReadLine();
-
-                while (line != null)
-                {
-                    var outString = line.Replace(@"{player1Name}", Player1.Name);
-                    outString = outString.Replace(@"{player2Name}", Player2.Name);
-                    outString = outString.Replace(@"{player1Score}", Player1.Score.ToString());
-                    outString = outString.Replace(@"{player2Score}", Player2.Score.ToString());
-                    outString = outString.Replace(@"{CenterTopText}", CenterTopText);
-                    outString = outString.Replace(@"{CenterBottomText}", CenterBottomText);
-                    outString = outString.Replace(@"{player1Image}", Player1.File);
-                    outString = outString.Replace(@"{player2Image}", Player2.File);
-                    outString = outString.Replace(@"{player1Attr1}", Player1.Character);
-                    outString = outString.Replace(@"{player1Attr2}", Player1.Rank);
-                    outString = outString.Replace(@"{player1Attr3}", Player1.ControlType);
-                    outString = outString.Replace(@"{player2Attr1}", Player2.Character);
-                    outString = outString.Replace(@"{player2Attr2}", Player2.Rank);
-                    outString = outString.Replace(@"{player2Attr3}", Player2.ControlType);
-                    sw.WriteLine(outString);
-                    line = sr.ReadLine();
-                }
-                sr.Close();
-                sw.Close();
-            }
-
-            using (StreamReader sr = new StreamReader(@"template/matchup.html"))
-            using (StreamWriter sw = new StreamWriter(@"output/matchup.html", false))
-            {
-                var line = sr.ReadLine();
-
-                while (line != null)
-                {
-                    var outString = line.Replace(@"{player1Name}", Player1.Name);
-                    outString = outString.Replace(@"{player2Name}", Player2.Name);
-                    outString = outString.Replace(@"{player1Copy}", Player1.Copy);
-                    outString = outString.Replace(@"{player2Copy}", Player2.Copy);
-                    outString = outString.Replace(@"{player1Image}", Player1.File);
-                    outString = outString.Replace(@"{player2Image}", Player2.File);
-                    outString = outString.Replace(@"{player1Attr1}", Player1.Character);
-                    outString = outString.Replace(@"{player1Attr2}", Player1.Rank);
-                    outString = outString.Replace(@"{player1Attr3}", Player1.ControlType);
-                    outString = outString.Replace(@"{player2Attr1}", Player2.Character);
-                    outString = outString.Replace(@"{player2Attr2}", Player2.Rank);
-                    outString = outString.Replace(@"{player2Attr3}", Player2.ControlType);
-                    sw.WriteLine(outString);
-                    line = sr.ReadLine();
-                }
-                sr.Close();
-                sw.Close();
-            }
+            var setting = new OverlaySetting();
+            setting.player1 = Player1.SelectedIndex;
+            setting.player2 = Player2.SelectedIndex;
+            setting.score1 = Player1.Score;
+            setting.score2 = Player2.Score;
+            JsonSettingIO.ToJson(SettingFileName, setting);
         }
     }
 }
