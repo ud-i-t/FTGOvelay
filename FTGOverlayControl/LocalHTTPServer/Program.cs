@@ -4,12 +4,28 @@ using static System.Net.Mime.MediaTypeNames;
 
 try
 {
+    if (args.Length != 2)
+    {
+        Console.WriteLine("[error] invalid arguments.");
+        return;
+    }
+
+    int port;
+    if (!int.TryParse(args[0], out port))
+    {
+        Console.WriteLine("[error] invalid port no.");
+        return;
+    }
+
+    string url = @"http://localhost:" + port + @"/";
     HttpListener listener = new HttpListener();
 
     listener.Prefixes.Clear();
-    listener.Prefixes.Add(@"http://+:8080/");
-
+    listener.Prefixes.Add(url);
     listener.Start();
+
+    Console.WriteLine("server started.");
+    Console.WriteLine(url + args[1]);
 
     while (true)
     {
@@ -55,7 +71,7 @@ try
             }
             catch (FileNotFoundException e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine($"[error] {e.Message}");
                 response.StatusCode = 404;
             }
         }
@@ -69,5 +85,5 @@ try
 }
 catch (Exception e)
 {
-    Console.WriteLine(e.Message);
+    Console.WriteLine($"[error] {e.Message}");
 }
