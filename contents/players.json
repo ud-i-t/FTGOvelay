@@ -1,0 +1,84 @@
+{
+    "players": [
+        {
+            "name" : "SHIOKA",
+            "player" : "A01"
+        },
+        {
+            "name" : "おろちきん",
+            "player" : "A02"
+        },
+        {
+            "name" : "杏藤ぴちか",
+            "player" : "A03"
+        },
+        {
+            "name" : "エリオット",
+            "player" : "A04"
+        },
+        {
+            "name" : "えよこ",
+            "player" : "A05"
+        },
+        {
+            "name" : "Ailis",
+            "player" : "B01"
+        },
+        {
+            "name" : "imoaN/Naomi",
+            "player" : "B02"
+        },
+        {
+            "name" : "くんぺー。",
+            "player" : "B03"
+        },
+        {
+            "name" : "イズミぃ",
+            "player" : "B04"
+        },
+        {
+            "name" : "鬼塚やくも",
+            "player" : "B05"
+        },
+        {
+            "name" : "ずましぃ",
+            "player" : "C01"
+        },
+        {
+            "name" : "八千草やぃく",
+            "player" : "C02"
+        },
+        {
+            "name" : "星野ニア様",
+            "player" : "C03"
+        },
+        {
+            "name" : "太刀華麗",
+            "player" : "C04"
+        },
+        {
+            "name" : "風快",
+            "player" : "C05"
+        },
+        {
+            "name" : "かぐや飛兎",
+            "player" : "D01"
+        },
+        {
+            "name" : "京",
+            "player" : "D02"
+        },
+        {
+            "name" : "夜祭まかまか",
+            "player" : "D03"
+        },
+        {
+            "name" : "くろのかなめ",
+            "player" : "D04"
+        },
+        {
+            "name" : "かためのプディング",
+            "player" : "D05"
+        }
+    ]
+}
