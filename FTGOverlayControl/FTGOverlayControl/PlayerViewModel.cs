@@ -81,6 +81,7 @@ namespace FTGOverlayControl
             _onChange = onChange; 
             Name = _setting.Name;
             Score = _setting.Score;
+            TeamScore = _setting.TeamScore;
 
             IncrementScore = new RelayCommand(_ => 
             { 

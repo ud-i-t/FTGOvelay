@@ -75,8 +75,8 @@ namespace FTGOverlayControl
 
             var players = JsonSettingIO.Read<PlayerDatas>(PlayerFileName);
             var setting = JsonSettingIO.Read<OverlaySetting>(SettingFileName);
-            Player1 = new PlayerViewModel(new PlayerSetting() { Score = setting.score1 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
-            Player2 = new PlayerViewModel(new PlayerSetting() { Score = setting.score2 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
+            Player1 = new PlayerViewModel(new PlayerSetting() { Score = setting.score1, TeamScore = setting.teamScore1 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
+            Player2 = new PlayerViewModel(new PlayerSetting() { Score = setting.score2, TeamScore = setting.teamScore2 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
         }
 
         private void UpdateScreen()
