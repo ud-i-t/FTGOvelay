@@ -37,6 +37,18 @@ namespace FTGOverlayControl
             }
         }
 
+        private int _teamScore;
+        public int TeamScore
+        {
+            get { return _teamScore; }
+            set
+            {
+                _teamScore = value;
+                _setting.TeamScore = value;
+                OnPropertyChanged(nameof(TeamScore));
+            }
+        }
+
         private int _selectedIndex = 0;
         public int SelectedIndex
         {
@@ -57,6 +69,8 @@ namespace FTGOverlayControl
 
         public RelayCommand IncrementScore { get; private set; }
         public RelayCommand DecrementScore { get; private set; }
+        public RelayCommand IncrementTeamScore { get; private set; }
+        public RelayCommand DecrementTeamScore { get; private set; }
         public IEnumerable<PlayerModel> Players { get; }
 
         public PlayerViewModel(PlayerSetting setting, Action onChange, IEnumerable<PlayerModel> players)
@@ -76,6 +90,16 @@ namespace FTGOverlayControl
             DecrementScore = new RelayCommand(_ =>
             {
                 Score--;
+                _onChange();
+            }, _ => true);
+            IncrementTeamScore = new RelayCommand(_ =>
+            {
+                TeamScore++;
+                _onChange();
+            }, _ => true);
+            DecrementTeamScore = new RelayCommand(_ =>
+            {
+                TeamScore--;
                 _onChange();
             }, _ => true);
         }

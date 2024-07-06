@@ -11,10 +11,17 @@
             <TextBlock Width="40">Name:</TextBlock>
             <TextBox x:Name="Player1Name" Width="140" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
+        <TextBlock>Player Score</TextBlock>
         <StackPanel Orientation="Horizontal" Margin="5 10 5 0">
             <TextBox x:Name="Score1" Text="{Binding Score, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
             <Button x:Name="AddScore1" Width="20" Command="{Binding IncrementScore}">+</Button>
             <Button x:Name="RemoveScore1" Width="20" Command="{Binding DecrementScore}">-</Button>
+        </StackPanel>
+        <TextBlock>Team Score</TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="5 10 5 0">
+            <TextBox x:Name="TeamScore" Text="{Binding TeamScore, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
+            <Button x:Name="AddTeamScore" Width="20" Command="{Binding IncrementTeamScore}">+</Button>
+            <Button x:Name="RemoveTeamScore" Width="20" Command="{Binding DecrementTeamScore}">-</Button>
         </StackPanel>
         <ComboBox Name="PlayerComboBox" Margin="5 10 5 0" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{Binding Players}" SelectedIndex="{Binding SelectedIndex}"/>
     </StackPanel>

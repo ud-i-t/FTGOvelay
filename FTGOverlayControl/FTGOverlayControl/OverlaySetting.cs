@@ -12,5 +12,7 @@ namespace FTGOverlayControl
         public int player2 { get; set; }
         public int score1 { get; set; }
         public int score2 { get; set; }
+        public int teamScore1 { get; set; }
+        public int teamScore2 { get; set; }
     }
 }
