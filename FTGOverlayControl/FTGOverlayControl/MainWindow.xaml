@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FTGOverlayControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="440">
+        Title="FTGOverlayController" Height="600" Width="440">
     <Window.DataContext>
         <local:MainVm></local:MainVm>
     </Window.DataContext>
@@ -19,14 +19,14 @@
                 <TextBlock Width="100">Center Top Text:</TextBlock>
                 <TextBox x:Name="CenterTopInput" Width="180" Text="{Binding CenterTopText}"></TextBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
+            <!--<StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                 <TextBlock Width="100">Center Bottom Text:</TextBlock>
                 <TextBox x:Name="CenterBottomInput" Width="180" Text="{Binding CenterBottomText}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,0,10,10">
                 <TextBlock Width="100">Match point:</TextBlock>
                 <TextBox x:Name="MatchPointInput" Width="180"></TextBox>
-            </StackPanel>
+            </StackPanel>-->
             <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                 <StackPanel Orientation="Vertical">
                     <TextBlock>Player1</TextBlock>
