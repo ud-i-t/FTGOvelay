@@ -55,7 +55,10 @@ namespace FTGOverlayControl
             ResetScore = new RelayCommand(_ =>
             {
                 Player1.Score = 0;
+                Player1.TeamScore = 0;
                 Player2.Score = 0;
+                Player2.TeamScore = 0;
+                UpdateScreen();
             }, _ => true);
 
             AddScore1 = new RelayCommand(_ =>

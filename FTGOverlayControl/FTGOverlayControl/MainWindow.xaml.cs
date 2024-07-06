@@ -24,5 +24,21 @@ namespace FTGOverlayControl
         {
             InitializeComponent();
         }
+
+        private void ResetScore1_Click(object sender, RoutedEventArgs e)
+        {
+            string msg = "本当にスコアをリセットしますか？\n（個人スコア・チームスコアともに0にします）";
+
+            MessageBoxResult res = MessageBox.Show(msg, "Confirmation", MessageBoxButton.OKCancel,
+                MessageBoxImage.Question, MessageBoxResult.Cancel);
+            switch (res)
+            {
+                case MessageBoxResult.OK:
+                    // ここからVMの処理を呼ぶのは汚いが簡単のため一旦こうする…。
+                    var vm = (MainVm)DataContext;
+                    vm.ResetScore.Execute(null);
+                    break;
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FTGOverlayControl"
         mc:Ignorable="d"
-        Title="FTGOverlayController" Height="600" Width="440">
+        Title="FTGOverlayController" Height="500" Width="470">
     <Window.DataContext>
         <local:MainVm></local:MainVm>
     </Window.DataContext>
@@ -28,17 +28,25 @@
                 <TextBox x:Name="MatchPointInput" Width="180"></TextBox>
             </StackPanel>-->
             <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock>Player1</TextBlock>
-                    <local:PlayerView DataContext="{Binding Player1}"></local:PlayerView>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock>Player2</TextBlock>
-                    <local:PlayerView DataContext="{Binding Player2}"></local:PlayerView>
-                </StackPanel>
+                <GroupBox Header="Player1">
+                    <StackPanel Orientation="Vertical">
+                        <local:PlayerView DataContext="{Binding Player1}"></local:PlayerView>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Player2">
+                    <StackPanel Orientation="Vertical">
+                        <local:PlayerView DataContext="{Binding Player2}"></local:PlayerView>
+                    </StackPanel>
+                </GroupBox>
             </StackPanel>
-            <Button x:Name="ResetScore1" Command="{Binding ResetScore}" Margin="10">Reset</Button>
         </StackPanel>
-        <Button x:Name="UpdateScreen" Command="{Binding UpdateScreenCommand}" Height="44" VerticalAlignment="Bottom" Margin="10">UpdateScreen</Button>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+            <Button x:Name="ResetScore1" Click="ResetScore1_Click" Margin="10 10 10 0" FontSize="20">
+                すべてのスコアをリセットする
+            </Button>
+            <Button x:Name="UpdateScreen" Command="{Binding UpdateScreenCommand}" Height="64" Margin="10" FontSize="20">
+                画面を更新する
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
