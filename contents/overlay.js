@@ -32,14 +32,18 @@ function switchPlayer(elements, index) {
         return;
     }
 
+    elements.name.innerHTML = players[index].name;
+    elements.index = index;
+
+    if (elements.image === null) return;
+    if (elements.teamImage === null) return;
+
     if (elements.index >= 0) {
         elements.image.children[elements.index].style.display = "none";
         elements.teamImage.children[elements.index].style.display = "none";
     }
     elements.image.children[index].style.display = "block";
     elements.teamImage.children[index].style.display = "block";
-    elements.name.innerHTML = players[index].name;
-    elements.index = index;
 }
 
 function updateText() {
@@ -58,8 +62,14 @@ function updateText() {
         score1.innerHTML = obj["score1"];
         score2.innerHTML = obj["score2"];
 
-        teamScore1.innerHTML = obj["teamScore1"];
-        teamScore2.innerHTML = obj["teamScore2"];
+        if (teamScore1 != undefined)
+        {
+            teamScore1.innerHTML = obj["teamScore1"];
+        }
+        if (teamScore2 != undefined)
+        {
+            teamScore2.innerHTML = obj["teamScore2"];
+        }
 
         centerTopText.innerHTML = obj["centerTopText"];
     });
@@ -68,6 +78,20 @@ function updateText() {
 function main() {
     updateText();
     setInterval(updateText, 1000);
+}
+
+function initPlayerImages(element, playerElements) {
+    if (playerElements.image != undefined)
+    {
+        let img = createPlayerImage("players/" + element.player + "_L.png");
+        playerElements.image.appendChild(img);
+    }
+
+    if (playerElements.teamImage != undefined)
+    {
+        let teamImg = createPlayerImage("team_icon/" + element.teamIcon);
+        playerElements.teamImage.appendChild(teamImg);
+    }
 }
 
 // ページ表示時にプレイヤーデータをキャッシュしておく
@@ -79,21 +103,11 @@ readPlayers = async () => {
     players = obj["players"];
     console.log(players);
 
-    {
-        players.forEach(element => {
-            let img = createPlayerImage("players/" + element.player + "_L.png");
-            player1Elements.image.appendChild(img);
-            let teamImg = createPlayerImage("team_icon/" + element.teamIcon);
-            player1Elements.teamImage.appendChild(teamImg);
-        });
-    }
-    {
-        players.forEach(element => {
-            let img = createPlayerImage("players/" + element.player + "_R.png");
-            player2Elements.image.appendChild(img);
-            let teamImg = createPlayerImage("team_icon/" + element.teamIcon);
-            player2Elements.teamImage.appendChild(teamImg);
-        });
-    }
+    players.forEach(element => {
+        initPlayerImages(element, player1Elements);
+    });
+    players.forEach(element => {
+        initPlayerImages(element, player2Elements);
+    });
 }
 readPlayers().then(main);
