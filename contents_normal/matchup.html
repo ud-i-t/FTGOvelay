@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>対戦カード表示</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="matchup.css">
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="player1" class="player">
+		<div id="nickName1" class="nickName">{player1Copy}</div>
+		<div id="playerName1" class="playerName">{player1Name}</div>
+		<img id="icon1" class="icon" src="{player1Image}">
+		<ul id="playerData1" class="playerData">
+			<li><div>使用キャラ</div><div class="value">{player1Attr1}</div></li>
+			<li><div>操作タイプ</div><div class="value">{player1Attr2}</div></li>
+			<li><div>ランク</div><div class="value">{player1Attr3}</div></li>
+		</ul>
+	</div>
+	<div id="player2" class="player">
+		<div id="nickName2" class="nickName">{player2Copy}</div>
+		<div id="playerName2" class="playerName">{player2Name}</div>
+		<img id="icon2" class="icon" src="{player2Image}">
+		<ul id="playerData2" class="playerData">
+			<li><div>使用キャラ</div><div class="value">{player2Attr1}</div></li>
+			<li><div>操作タイプ</div><div class="value">{player2Attr2}</div></li>
+			<li><div>ランク</div><div class="value">{player2Attr3}</div></li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

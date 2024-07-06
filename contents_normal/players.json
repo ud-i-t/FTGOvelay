@@ -1,0 +1,104 @@
+{
+    "players": [
+        {
+            "name" : "SHIOKA",
+            "player" : "A01",
+            "teamIcon" : "チーム=A.png"
+        },
+        {
+            "name" : "おろちきん",
+            "player" : "A02",
+            "teamIcon" : "チーム=A.png"
+        },
+        {
+            "name" : "杏藤ぴちか",
+            "player" : "A03",
+            "teamIcon" : "チーム=A.png"
+        },
+        {
+            "name" : "エリオット",
+            "player" : "A04",
+            "teamIcon" : "チーム=A.png"
+        },
+        {
+            "name" : "えよこ",
+            "player" : "A05",
+            "teamIcon" : "チーム=A.png"
+        },
+        {
+            "name" : "Ailis",
+            "player" : "B01",
+            "teamIcon" : "チーム=B.png"
+        },
+        {
+            "name" : "imoaN/Naomi",
+            "player" : "B02",
+            "teamIcon" : "チーム=B.png"
+        },
+        {
+            "name" : "くんぺー。",
+            "player" : "B03",
+            "teamIcon" : "チーム=B.png"
+        },
+        {
+            "name" : "イズミぃ",
+            "player" : "B04",
+            "teamIcon" : "チーム=B.png"
+        },
+        {
+            "name" : "鬼塚やくも",
+            "player" : "B05",
+            "teamIcon" : "チーム=B.png"
+        },
+        {
+            "name" : "ずましぃ",
+            "player" : "C01",
+            "teamIcon" : "チーム=C.png"
+        },
+        {
+            "name" : "八千草やぃく",
+            "player" : "C02",
+            "teamIcon" : "チーム=C.png"
+        },
+        {
+            "name" : "星野ニア様",
+            "player" : "C03",
+            "teamIcon" : "チーム=C.png"
+        },
+        {
+            "name" : "太刀華麗",
+            "player" : "C04",
+            "teamIcon" : "チーム=C.png"
+        },
+        {
+            "name" : "風快",
+            "player" : "C05",
+            "teamIcon" : "チーム=C.png"
+        },
+        {
+            "name" : "かぐや飛兎",
+            "player" : "D01",
+            "teamIcon" : "チーム=D.png"
+        },
+        {
+            "name" : "京",
+            "player" : "D02",
+            "teamIcon" : "チーム=D.png"
+        },
+        {
+            "name" : "夜祭まかまか",
+            "player" : "D03",
+            "teamIcon" : "チーム=D.png"
+        },
+        {
+            "name" : "くろのかなめ",
+            "player" : "D04",
+            "teamIcon" : "チーム=D.png"
+        },
+        {
+            "name" : "かためのプディング",
+            "player" : "D05",
+            "teamIcon" : "チーム=D.png"
+        }
+    ]
+}

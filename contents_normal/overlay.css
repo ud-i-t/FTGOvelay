@@ -1,0 +1,104 @@
+﻿div#wrapper{
+  width: 100%;
+  height: 1080px;
+  background-image: url("background.png");
+  font-family: "M PLUS 1";
+  font-weight: 600;
+}
+
+div#centerTopText{
+  width: 400px;
+  margin: auto;
+  text-align: center;
+  font-size: 30px;
+  font-family: "M PLUS 1 Bold";
+  color: #222;
+  text-shadow: 0px 0px 2px #fff;
+}
+
+div.player{
+  position: absolute;
+  font-size: 30px;
+  color: white;
+  top: 2px;
+}
+
+div#player1Images{
+  left: 0;
+  text-align: right;
+}
+div#player2Images{
+  right: 0;
+  text-align: left;
+}
+
+/* プレイヤー名 */
+div.playerName{
+  position: absolute;
+  font-size: 42px;
+  color:black;
+  top: 52px;
+}
+
+div#playerName1{
+  left: 312px;
+  text-align: left;
+}
+
+div#playerName2{
+  right: 312px;
+  text-align: right;
+}
+
+/* スコア */
+img.score{
+  position: absolute;
+  top: 784px;
+}
+
+div.score{
+  width: 152px;
+  font-size: 72px;
+  color:white;
+  text-align: center;
+  vertical-align: bottom;
+  position: absolute;
+  top: 934px;
+}
+
+div#score1
+{
+  left: 0;
+}
+
+div#score2
+{
+  right: 0;
+}
+
+/* チームスコア */
+div.teamScore{
+  width: 72px;
+  font-size: 72px;
+  color:#333;
+  text-align: center;
+  vertical-align: bottom;
+  position: absolute;
+  top: 8px;
+}
+
+div#teamScore1
+{
+  left: 0;
+}
+
+div#teamScore2
+{
+  right: 0;
+}
+
+/* チームロゴ */
+div.teamIcon{
+  position: absolute;
+  top: 0;
+}
