@@ -1,4 +1,6 @@
 // get DOM elements
+const centerTopText = document.getElementById("centerTopText");
+
 const player1Elements = {
     name: document.getElementById("playerName1"),
     image: document.getElementById("player1Images"),
@@ -54,6 +56,8 @@ function updateText() {
 
         teamScore1.innerHTML = obj["teamScore1"];
         teamScore2.innerHTML = obj["teamScore2"];
+
+        centerTopText.innerHTML = obj["centerTopText"];
     });
 }
 

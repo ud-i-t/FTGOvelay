@@ -17,7 +17,7 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                 <TextBlock Width="100">Center Top Text:</TextBlock>
-                <TextBox x:Name="CenterTopInput" Width="180" Text="{Binding CenterTopText}"></TextBox>
+                <TextBox x:Name="CenterTopInput" Width="180" Text="{Binding CenterTopText, Mode=TwoWay}"></TextBox>
             </StackPanel>
             <!--<StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                 <TextBlock Width="100">Center Bottom Text:</TextBlock>
