@@ -41,9 +41,6 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-            <!--<Button x:Name="ResetScore1" Click="ResetScore1_Click" Margin="10 10 10 0" FontSize="20" Background="Pink">
-                すべてのスコアをリセットする
-            </Button>-->
             <StackPanel Orientation="Horizontal" Margin="10">
                 <Button x:Name="PrevMatch" Command="{Binding PrevMatchCommand}" Height="64" Width="215" FontSize="20" >
                     前のマッチ
