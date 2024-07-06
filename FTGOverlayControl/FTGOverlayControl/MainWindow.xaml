@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FTGOverlayControl"
         mc:Ignorable="d"
-        Title="FTGOverlayController" Height="500" Width="470">
+        Title="FTGOverlayController" Height="600" Width="470">
     <Window.DataContext>
         <local:MainVm></local:MainVm>
     </Window.DataContext>
@@ -17,7 +17,7 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                 <TextBlock Width="100">Center Top Text:</TextBlock>
-                <TextBox x:Name="CenterTopInput" Width="180" Text="{Binding CenterTopText, Mode=TwoWay}"></TextBox>
+                <TextBox x:Name="CenterTopInput" Width="180" Text="{Binding CenterTopText}"></TextBox>
             </StackPanel>
             <!--<StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                 <TextBlock Width="100">Center Bottom Text:</TextBlock>
@@ -41,10 +41,18 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-            <Button x:Name="ResetScore1" Click="ResetScore1_Click" Margin="10 10 10 0" FontSize="20">
+            <!--<Button x:Name="ResetScore1" Click="ResetScore1_Click" Margin="10 10 10 0" FontSize="20" Background="Pink">
                 すべてのスコアをリセットする
-            </Button>
-            <Button x:Name="UpdateScreen" Command="{Binding UpdateScreenCommand}" Height="64" Margin="10" FontSize="20">
+            </Button>-->
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Button x:Name="PrevMatch" Command="{Binding PrevMatchCommand}" Height="64" Width="215" FontSize="20" >
+                    前のマッチ
+                </Button>
+                <Button x:Name="NextMatch" Command="{Binding NextMatchCommand}" Height="64" Width="215" FontSize="20" >
+                    次のマッチ
+                </Button>
+            </StackPanel>
+            <Button x:Name="UpdateScreen" Command="{Binding UpdateScreenCommand}" Height="96" Width="430" Margin="10" FontSize="20">
                 画面を更新する
             </Button>
         </StackPanel>

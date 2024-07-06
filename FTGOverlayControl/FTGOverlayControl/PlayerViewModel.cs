@@ -55,6 +55,8 @@ namespace FTGOverlayControl
             get { return _selectedIndex; }
             set
             {
+                if (value < 0) return;
+                if (value >= Players.Count()) return;
                 _selectedIndex = value;
                 OnPropertyChanged(nameof(SelectedIndex));
             }
