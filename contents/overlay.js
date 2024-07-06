@@ -4,6 +4,7 @@ const centerTopText = document.getElementById("centerTopText");
 const player1Elements = {
     name: document.getElementById("playerName1"),
     image: document.getElementById("player1Images"),
+    teamImage: document.getElementById("team1Images"),
     index: -1
 }
 const score1 = document.getElementById("score1");
@@ -12,6 +13,7 @@ const teamScore1 = document.getElementById("teamScore1");
 const player2Elements = {
     name: document.getElementById("playerName2"),
     image: document.getElementById("player2Images"),
+    teamImage: document.getElementById("team2Images"),
     index: -1
 }
 const score2 = document.getElementById("score2");
@@ -32,8 +34,10 @@ function switchPlayer(elements, index) {
 
     if (elements.index >= 0) {
         elements.image.children[elements.index].style.display = "none";
+        elements.teamImage.children[elements.index].style.display = "none";
     }
     elements.image.children[index].style.display = "block";
+    elements.teamImage.children[index].style.display = "block";
     elements.name.innerHTML = players[index].name;
     elements.index = index;
 }
@@ -76,17 +80,19 @@ readPlayers = async () => {
     console.log(players);
 
     {
-        player = player1Elements.image;
         players.forEach(element => {
             let img = createPlayerImage("players/" + element.player + "_L.png");
-            player.appendChild(img);
+            player1Elements.image.appendChild(img);
+            let teamImg = createPlayerImage("team_icon/" + element.teamIcon);
+            player1Elements.teamImage.appendChild(teamImg);
         });
     }
     {
-        player = player2Elements.image;
         players.forEach(element => {
             let img = createPlayerImage("players/" + element.player + "_R.png");
-            player.appendChild(img);
+            player2Elements.image.appendChild(img);
+            let teamImg = createPlayerImage("team_icon/" + element.teamIcon);
+            player2Elements.teamImage.appendChild(teamImg);
         });
     }
 }

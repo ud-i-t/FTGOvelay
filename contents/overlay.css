@@ -97,9 +97,8 @@ div#teamScore2
   right: 0;
 }
 
-
 /* チームロゴ */
-img.teamLogo{
+div.teamIcon{
   position: absolute;
   top: 0;
 }
