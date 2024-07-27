@@ -41,6 +41,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+            <ComboBox Name="MatchList" FontSize="16" Margin="10 10 10 0" ItemsSource="{Binding Matches}" SelectedIndex="{Binding CurrentMatch}"></ComboBox>
             <StackPanel Orientation="Horizontal" Margin="10">
                 <Button x:Name="PrevMatch" Command="{Binding PrevMatchCommand}" Height="64" Width="215" FontSize="20" >
                     前のマッチ

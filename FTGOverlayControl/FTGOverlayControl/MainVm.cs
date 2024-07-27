@@ -18,8 +18,19 @@ namespace FTGOverlayControl
         private static string PlayerFileName = "contents/players.json";
         private static string SettingFileName = "contents/score.json";
 
-        private int _currentMatch = 0;
-        private static IList<Match> MatchList = new List<Match>()
+        public int _currentMatch { get; set; }
+        public int CurrentMatch
+        {
+            get { return _currentMatch; }
+            set
+            {
+                _currentMatch = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentMatch)));
+                ApplyMatch();
+            }
+        }
+
+        private static IList<Match> MatchOrder { get; } = new List<Match>()
         {
             new Match(0, 5, "先鋒戦", true),
             new Match(1, 6, "次鋒戦", false),
@@ -53,6 +64,7 @@ namespace FTGOverlayControl
             new Match(19, 4, "大将戦", false),
         };
 
+        public IList<MatchViewModel> Matches { get; private set; }
         public PlayerViewModel Player1 { get; }
         public PlayerViewModel Player2 { get; }
         public RelayCommand ResetScore { get; private set; }
@@ -131,26 +143,28 @@ namespace FTGOverlayControl
             Player1 = new PlayerViewModel(new PlayerSetting() { Score = setting.score1, TeamScore = setting.teamScore1 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
             Player2 = new PlayerViewModel(new PlayerSetting() { Score = setting.score2, TeamScore = setting.teamScore2 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
 
+            Matches = MatchOrder.Select(x => new MatchViewModel(x, players)).ToList();
+
             ApplyMatch();
         }
 
         private void NextMatch()
         {
-            if ((_currentMatch + 1) >= MatchList.Count) return;
-            _currentMatch++;
+            if ((CurrentMatch + 1) >= MatchOrder.Count) return;
+            CurrentMatch++;
             ApplyMatch();
         }
 
         private void PrevMatch()
         {
-            if ((_currentMatch - 1) < 0) return;
-            _currentMatch--;
+            if ((CurrentMatch - 1) < 0) return;
+            CurrentMatch--;
             ApplyMatch();
         }
 
         private void ApplyMatch()
         {
-            var currentMatch = MatchList[_currentMatch];
+            var currentMatch = MatchOrder[CurrentMatch];
             Player1.SelectedIndex = currentMatch.Player1Index;
             Player2.SelectedIndex = currentMatch.Player2Index;
 
