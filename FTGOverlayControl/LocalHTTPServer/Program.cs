@@ -29,9 +29,9 @@ try
 
     while (true)
     {
-        HttpListenerContext context = listener.GetContext();
+        var task = listener.GetContextAsync();
+        var context = await task;
         HttpListenerRequest request = context.Request;
-
         HttpListenerResponse response = context.Response;
 
         // HTMLを表示する
@@ -62,11 +62,15 @@ try
                     throw new Exception("invalid path.");
                 }
 
-                using (Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    int count = -1; byte[] buffer = new byte[4096];
-                    for (; (count = stream.Read(buffer, 0, buffer.Length)) != 0;)
+                    for (;;)
+                    {
+                        byte[] buffer = new byte[4096];
+                        int count = stream.Read(buffer, 0, buffer.Length);
+                        if (count == 0) break;
                         response.OutputStream.Write(buffer, 0, count);
+                    }
                 }
             }
             catch (FileNotFoundException e)
