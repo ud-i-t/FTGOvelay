@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace FTGOverlayControl.Model
 {
+    internal class Matches
+    {
+        public Match[] Items { get; set; }
+    }
+
     internal class Match
     {
-        public int Player1Index { get; }
-        public int Player2Index { get; }
-        public string CenterText { get; } = string.Empty;
-
-        public Match(int player1, int player2, string centerText) 
-        {
-            Player1Index = player1;
-            Player2Index = player2;
-            CenterText = centerText;
-        }
+        public int Player1Index { get; set; }
+        public int Player2Index { get; set; }
+        public string CenterText { get; set; } = string.Empty;
     }
 }
