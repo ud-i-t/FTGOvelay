@@ -1,0 +1,57 @@
+﻿*{
+  margin: 0;
+  padding: 0;
+}
+
+html{
+
+}
+
+body{
+  background-color: #f6f6f9;
+  font-family: "メイリオ", "ヒラギノ角ゴシック Pro", sans-serif;
+  font-size: 16px;
+  color: #688;
+}
+
+a:link{
+  text-decoration: none;
+  color: #72640c;
+}
+
+a:visited{
+  text-decoration: none;
+  color: #72640c;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #72640c;
+}
+
+div#wrapper{
+  margin: 0px;
+  padding: 0px;
+}
+
+div#content .pict{
+  width: 328px;
+  height: 100%;
+  float:left;
+}
+
+div#footer{
+  margin: 30px 0 0 10px;
+}
+
+div#content ul{
+  margin: 40px 0 40px 30px;;
+}
+
+div#content li{
+  padding: 6px 0;
+  list-style-type: circle;
+}
+
+h1{
+}
