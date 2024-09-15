@@ -33,6 +33,7 @@ namespace RoundRobinControl
 
         public RelayCommand OnNext { get; private set; }
         public RelayCommand OnPreview { get; private set; }
+        public RelayCommand OnSave { get; private set; }
 
         public MainVM()
         { 
@@ -52,11 +53,23 @@ namespace RoundRobinControl
                 _roundIndex--;
                 Matches = _rounds[_roundIndex];
             }, _ => _roundIndex > 0 );
+
+            OnSave = new RelayCommand(_ =>
+            {
+                Save();    
+            }, _ => true);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void Save()
+        {
+            var results = new RoundRobinMatchResults();
+            results.Results = _rounds.Select(x => new RoundRobinRoundResult() { Results = x.MatchViewModels.Select(x => x.ToResult()).ToArray()}).ToArray();
+            JsonSettingIO.ToJson("results.json", results);
         }
     }
 }

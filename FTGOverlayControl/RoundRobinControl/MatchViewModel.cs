@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoundRobinControl;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace FTGOverlayControl
         public RelayCommand OnPlayer1Win { get; private set; }
         public RelayCommand OnPlayer2Win { get; private set; }
 
-        private int WinnerIndex = 0;
+        private int WinnerIndex = -1;
 
         private Model.Match _match;
         private PlayerDatas _players;
@@ -53,7 +54,7 @@ namespace FTGOverlayControl
         {
             _match = match;
             _players = player;
-            Player1Color = DefaultColor; 
+            Player1Color = DefaultColor;
             Player2Color = DefaultColor;
 
             OnPlayer1Win = new RelayCommand(_ =>
@@ -79,6 +80,11 @@ namespace FTGOverlayControl
         public override string ToString()
         {
             return $"{_match.CenterText} {_players.players[_match.Player1Index].name} vs {_players.players[_match.Player2Index].name}";
+        }
+
+        public RoundRobinMatchResult ToResult()
+        {
+            return new RoundRobinMatchResult() { Player1 = _match.Player1Index, Player2 = _match.Player2Index, Winner = WinnerIndex };
         }
     }
 }
