@@ -17,6 +17,7 @@ namespace FTGOverlayControl
     {
         private static string PlayerFileName = "contents/players.json";
         private static string SettingFileName = "contents/score.json";
+        private static string FightOrderFileName = "fight_order.json";
 
         public int _currentMatch { get; set; }
         public int CurrentMatch
@@ -30,40 +31,7 @@ namespace FTGOverlayControl
             }
         }
 
-        private static IList<Match> MatchOrder { get; } = new List<Match>()
-        {
-            new Match(0, 5, "先鋒戦"),
-            new Match(1, 6, "次鋒戦"),
-            new Match(2, 7, "中堅戦"),
-            new Match(3, 8, "副将戦"),
-            new Match(4, 9, "大将戦"),
-            new Match(10, 15, "先鋒戦"),
-            new Match(11, 16, "次鋒戦"),
-            new Match(12, 17, "中堅戦"),
-            new Match(13, 18, "副将戦"),
-            new Match(14, 19, "大将戦"),
-            new Match(0, 10, "先鋒戦"),
-            new Match(1, 11, "次鋒戦"),
-            new Match(2, 12, "中堅戦"),
-            new Match(3, 13, "副将戦"),
-            new Match(4, 14, "大将戦"),
-            new Match(5, 15, "先鋒戦"),
-            new Match(6, 16, "次鋒戦"),
-            new Match(7, 17, "中堅戦"),
-            new Match(8, 18, "副将戦"),
-            new Match(9, 19, "大将戦"),
-            new Match(10, 5, "先鋒戦"),
-            new Match(11, 6, "次鋒戦"),
-            new Match(12, 7, "中堅戦"),
-            new Match(13, 8, "副将戦"),
-            new Match(14, 9, "大将戦"),
-            new Match(15, 0, "先鋒戦"),
-            new Match(16, 1, "次鋒戦"),
-            new Match(17, 2, "中堅戦"),
-            new Match(18, 3, "副将戦"),
-            new Match(19, 4, "大将戦"),
-        };
-
+        private Matches _matchModels;
         public IList<MatchViewModel> Matches { get; private set; }
         public PlayerViewModel Player1 { get; }
         public PlayerViewModel Player2 { get; }
@@ -143,14 +111,15 @@ namespace FTGOverlayControl
             Player1 = new PlayerViewModel(new PlayerSetting() { Score = setting.score1, TeamScore = setting.teamScore1 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
             Player2 = new PlayerViewModel(new PlayerSetting() { Score = setting.score2, TeamScore = setting.teamScore2 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
 
-            Matches = MatchOrder.Select(x => new MatchViewModel(x, players)).ToList();
+            _matchModels = JsonSettingIO.Read<Matches>(FightOrderFileName);
+            Matches = _matchModels.Items.Select(x => new MatchViewModel(x, players)).ToList();
 
             ApplyMatch();
         }
 
         private void NextMatch()
         {
-            if ((CurrentMatch + 1) >= MatchOrder.Count) return;
+            if ((CurrentMatch + 1) >= Matches.Count) return;
             CurrentMatch++;
             ApplyMatch();
         }
@@ -164,7 +133,7 @@ namespace FTGOverlayControl
 
         private void ApplyMatch()
         {
-            var currentMatch = MatchOrder[CurrentMatch];
+            var currentMatch = _matchModels.Items[CurrentMatch];
             Player1.SelectedIndex = currentMatch.Player1Index;
             Player2.SelectedIndex = currentMatch.Player2Index;
 

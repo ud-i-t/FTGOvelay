@@ -1,0 +1,112 @@
+{
+    "players": [
+        {
+            "name" : "てとみ",
+            "player" : "A01",
+            "teamIcon" : "チーム=A.png",
+            "team" : "てほみぃ"
+        },
+        {
+            "name" : "天宮ちほ",
+            "player" : "A02",
+            "teamIcon" : "チーム=A.png",
+            "team" : "てほみぃ"
+        },
+        {
+            "name" : "イズミぃ",
+            "player" : "A03",
+            "teamIcon" : "チーム=A.png",
+            "team" : "てほみぃ"
+        },
+        {
+            "name" : "ニノ・アグレスト",
+            "player" : "B01",
+            "teamIcon" : "チーム=B.png",
+            "team" : "誰？"
+        },
+        {
+            "name" : "くろのかなめ",
+            "player" : "B02",
+            "teamIcon" : "チーム=B.png",
+            "team" : "誰？"
+        },
+        {
+            "name" : "やがた",
+            "player" : "B03",
+            "teamIcon" : "チーム=B.png",
+            "team" : "誰？"
+        },
+        {
+            "name" : "芋杏ナオミ",
+            "player" : "C01",
+            "teamIcon" : "チーム=B.png",
+            "team" : "固めの干し芋"
+        },
+        {
+            "name" : "星野ニア様",
+            "player" : "C02",
+            "teamIcon" : "チーム=B.png",
+            "team" : "固めの干し芋"
+        },
+        {
+            "name" : "かためのプディング",
+            "player" : "C03",
+            "teamIcon" : "チーム=B.png",
+            "team" : "固めの干し芋"
+        },
+        {
+            "name" : "星鳳ともり",
+            "player" : "D01",
+            "teamIcon" : "チーム=B.png",
+            "team" : "華麗なオット星"
+        },
+        {
+            "name" : "エリオット",
+            "player" : "D02",
+            "teamIcon" : "チーム=B.png",
+            "team" : "華麗なオット星"
+        },
+        {
+            "name" : "太刀華麗",
+            "player" : "D03",
+            "teamIcon" : "チーム=B.png",
+            "team" : "華麗なオット星"
+        },
+        {
+            "name" : "クマ=チャン･ダヨ",
+            "player" : "E01",
+            "teamIcon" : "チーム=B.png",
+            "team" : "愛されキャラチーム"
+        },
+        {
+            "name" : "赫闇まお",
+            "player" : "E02",
+            "teamIcon" : "チーム=B.png",
+            "team" : "愛されキャラチーム"
+        },
+        {
+            "name" : "えよこ",
+            "player" : "E03",
+            "teamIcon" : "チーム=B.png",
+            "team" : "愛されキャラチーム"
+        },
+        {
+            "name" : "花音ミルン",
+            "player" : "F01",
+            "teamIcon" : "チーム=B.png",
+            "team" : "風花祭"
+        },
+        {
+            "name" : "夜祭まかまか",
+            "player" : "F02",
+            "teamIcon" : "チーム=B.png",
+            "team" : "風花祭"
+        },
+        {
+            "name" : "風快",
+            "player" : "F03",
+            "teamIcon" : "チーム=B.png",
+            "team" : "風花祭"
+        }
+    ]
+}
