@@ -20,5 +20,10 @@ namespace RoundRobinControl
             _round = round;
             MatchViewModels = matchViewModels.Select(x => new MatchViewModel(x, players)).ToList();
         }
+
+        public bool IsWinner(int playerIndex)
+        {
+            return MatchViewModels.Any(x => x.IsWinner(playerIndex));
+        }
     }
 }

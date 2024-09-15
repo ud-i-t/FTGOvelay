@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,15 +32,17 @@ namespace RoundRobinControl
             }
         }
 
+        private PlayerDatas _players;
+
         public RelayCommand OnNext { get; private set; }
         public RelayCommand OnPreview { get; private set; }
         public RelayCommand OnSave { get; private set; }
 
         public MainVM()
         { 
-            var players = JsonSettingIO.Read<PlayerDatas>(PlayerFileName);
+            _players = JsonSettingIO.Read<PlayerDatas>(PlayerFileName);
             _matchModels = JsonSettingIO.Read<ParallelMatches>(FightOrderFileName);
-            _rounds = _matchModels.Items.Select((x, index) => new RoundViewModel(index + 1, x.Items, players)).ToList();
+            _rounds = _matchModels.Items.Select((x, index) => new RoundViewModel(index + 1, x.Items, _players)).ToList();
             Matches = _rounds.First();
 
             OnNext = new RelayCommand(_ =>
@@ -67,9 +70,33 @@ namespace RoundRobinControl
 
         private void Save()
         {
+            // 全試合結果
             var results = new RoundRobinMatchResults();
-            results.Results = _rounds.Select(x => new RoundRobinRoundResult() { Results = x.MatchViewModels.Select(x => x.ToResult()).ToArray()}).ToArray();
+            results.Results = _rounds.Select(x => new RoundRobinRoundResult() { Results = x.MatchViewModels.Select(x => x.ToResult()).ToArray() }).ToArray();
             JsonSettingIO.ToJson("results.json", results);
+            
+            // プレイヤー成績
+            var playerResults = new PlayersScore();
+            playerResults.Scores = _players.players.Select((player, index) => new PlayerScore() { 
+                Results = _rounds.Select(x => x.IsWinner(index) ? 1 : 0).ToArray(),
+                Score = _rounds.Count(x => x.IsWinner(index))
+            }).ToArray();
+            var ranking = Enumerable.Range(0, _players.players.Count())
+                .GroupBy(x => playerResults.Scores[x].Score)
+                .OrderBy(x => -x.Key)
+                .ToList();
+
+            int rank = 1;
+            foreach(var group in ranking)
+            {
+                foreach (var item in group)
+                {
+                    playerResults.Scores[item].Rank = rank;
+                }
+                rank += group.Count();
+            }
+
+            JsonSettingIO.ToJson("playersScore.json", playerResults);
         }
     }
 }

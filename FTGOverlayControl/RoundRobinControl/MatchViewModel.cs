@@ -86,5 +86,18 @@ namespace FTGOverlayControl
         {
             return new RoundRobinMatchResult() { Player1 = _match.Player1Index, Player2 = _match.Player2Index, Winner = WinnerIndex };
         }
+
+        public bool IsWinner(int playerIndex) 
+        {
+            if (WinnerIndex == 0 &&_match.Player1Index == playerIndex)
+            {
+                return true;
+            }
+            if (WinnerIndex == 1 && _match.Player2Index == playerIndex)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
