@@ -13,6 +13,7 @@ namespace RoundRobinControl
 
     internal class PlayerScore
     {
+        public string Name { get; set; }
         public int[] Results { get; set; }
         public int Score { get; set; }
         public int Rank { get; set; }

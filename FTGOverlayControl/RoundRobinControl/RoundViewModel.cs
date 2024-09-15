@@ -25,5 +25,10 @@ namespace RoundRobinControl
         {
             return MatchViewModels.Any(x => x.IsWinner(playerIndex));
         }
+
+        public bool IsDone()
+        {
+            return MatchViewModels.Any(x => x.IsDone());  
+        }
     }
 }

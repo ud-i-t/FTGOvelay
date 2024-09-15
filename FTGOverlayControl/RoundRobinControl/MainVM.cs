@@ -3,6 +3,7 @@ using FTGOverlayControl.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -39,7 +40,7 @@ namespace RoundRobinControl
         public RelayCommand OnSave { get; private set; }
 
         public MainVM()
-        { 
+        {
             _players = JsonSettingIO.Read<PlayerDatas>(PlayerFileName);
             _matchModels = JsonSettingIO.Read<ParallelMatches>(FightOrderFileName);
             _rounds = _matchModels.Items.Select((x, index) => new RoundViewModel(index + 1, x.Items, _players)).ToList();
@@ -55,11 +56,11 @@ namespace RoundRobinControl
             {
                 _roundIndex--;
                 Matches = _rounds[_roundIndex];
-            }, _ => _roundIndex > 0 );
+            }, _ => _roundIndex > 0);
 
             OnSave = new RelayCommand(_ =>
             {
-                Save();    
+                Save();
             }, _ => true);
         }
 
@@ -74,29 +75,49 @@ namespace RoundRobinControl
             var results = new RoundRobinMatchResults();
             results.Results = _rounds.Select(x => new RoundRobinRoundResult() { Results = x.MatchViewModels.Select(x => x.ToResult()).ToArray() }).ToArray();
             JsonSettingIO.ToJson("results.json", results);
-            
+
             // プレイヤー成績
             var playerResults = new PlayersScore();
-            playerResults.Scores = _players.players.Select((player, index) => new PlayerScore() { 
-                Results = _rounds.Select(x => x.IsWinner(index) ? 1 : 0).ToArray(),
-                Score = _rounds.Count(x => x.IsWinner(index))
-            }).ToArray();
-            var ranking = Enumerable.Range(0, _players.players.Count())
-                .GroupBy(x => playerResults.Scores[x].Score)
-                .OrderBy(x => -x.Key)
-                .ToList();
 
-            int rank = 1;
-            foreach(var group in ranking)
             {
-                foreach (var item in group)
+                playerResults.Scores = _players.players.Select((player, index) => new PlayerScore()
                 {
-                    playerResults.Scores[item].Rank = rank;
+                    Name = _players.players[index].name,
+                    Results = _rounds.Select(x => {
+                        if (!x.IsDone())
+                        {
+                            return -1;
+                        }
+                        return x.IsWinner(index) ? 1 : 0;
+                    }).ToArray(),
+                    Score = _rounds.Count(x => x.IsWinner(index))
+                }).ToArray();
+                var ranking = Enumerable.Range(0, _players.players.Count())
+                    .GroupBy(x => playerResults.Scores[x].Score)
+                    .OrderBy(x => -x.Key)
+                    .ToList();
+
+                int rank = 1;
+                foreach (var group in ranking)
+                {
+                    foreach (var item in group)
+                    {
+                        playerResults.Scores[item].Rank = rank;
+                    }
+                    rank += group.Count();
                 }
-                rank += group.Count();
+
+                JsonSettingIO.ToJson("playersScore.json", playerResults);
             }
 
-            JsonSettingIO.ToJson("playersScore.json", playerResults);
+            // サマリー
+            {
+                var summary = playerResults.Scores
+                    .OrderBy(x => x.Rank)
+                    .Select(x => $"{x.Rank}位: {x.Name} ({x.Results.Count(x => x == 1)}勝)\n")
+                    .Aggregate((acc, x) => acc + x);
+                File.WriteAllText("summary.txt", summary);
+            }
         }
     }
 }
