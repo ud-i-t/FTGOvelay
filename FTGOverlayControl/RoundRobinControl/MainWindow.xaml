@@ -10,10 +10,19 @@
         <local:MainVM></local:MainVM>
     </Window.DataContext>
     <Grid>
-        <StackPanel HorizontalAlignment="Center">
-            <local:MatchView></local:MatchView>
-            <local:MatchView></local:MatchView>
-        </StackPanel>
+        <ItemsControl x:Name="stack" ItemsSource="{Binding Matches}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <!--<TextBlock Text="{Binding}"></TextBlock>-->
+                    <local:MatchView DataContext="{Binding}"></local:MatchView>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <Button HorizontalAlignment="Left" Height="20" Width="100">前のマッチ</Button>
         <Button HorizontalAlignment="Right" Height="20" Width="100">次のマッチ</Button>
     </Grid>

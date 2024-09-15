@@ -7,10 +7,10 @@
              mc:Ignorable="d"
              d:Height="60" d:Width="600">
     <StackPanel Orientation="Horizontal">
-        <Button Width="120">Win</Button>
-        <TextBlock FontSize="24" Width="100" TextAlignment="Left" Margin="20 0 0 0">Player1</TextBlock>
-        <TextBlock FontSize="24">vs</TextBlock>
-        <TextBlock FontSize="24" Width="100" TextAlignment="Right" Margin="0 0 20 0">Player2</TextBlock>
-        <Button Width="120">Win</Button>
+        <Button Width="120" Background="{Binding Player1Color}" Command="{Binding OnPlayer1Win}">Win</Button>
+        <TextBlock FontSize="20" Width="200" TextAlignment="Right" Margin="20 0 20 0" Text="{Binding Player1Name}"></TextBlock>
+        <TextBlock FontSize="20">vs</TextBlock>
+        <TextBlock FontSize="20" Width="200" TextAlignment="Left" Margin="20 0 20 0" Text="{Binding Player2Name}"></TextBlock>
+        <Button Width="120" Background="{Binding Player2Color}" Command="{Binding OnPlayer2Win}">Win</Button>
     </StackPanel>
 </UserControl>

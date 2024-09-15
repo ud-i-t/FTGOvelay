@@ -1,4 +1,5 @@
-﻿using FTGOverlayControl.Model;
+﻿using FTGOverlayControl;
+using FTGOverlayControl.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,22 +8,18 @@ using System.Threading.Tasks;
 
 namespace RoundRobinControl
 {
-    public class MainVM
+    internal class MainVM
     {
+        private static string PlayerFileName = "contents/players.json";
         private static string FightOrderFileName = "matches.json";
         private ParallelMatches _matchModels;
+        public IList<MatchViewModel> Matches { get; private set; }
 
         public MainVM()
         { 
+            var players = JsonSettingIO.Read<PlayerDatas>(PlayerFileName);
             _matchModels = JsonSettingIO.Read<ParallelMatches>(FightOrderFileName);
-
-            foreach(var matchModel in _matchModels.Items)
-            {
-                foreach(var match in matchModel.Items)
-                {
-                    Console.WriteLine($"{match.Player1Index} vs {match.Player2Index}");
-                }
-            }
+            Matches = _matchModels.Items.First().Items.Select(x => new MatchViewModel(x, players)).ToList();
         }
     }
 }
