@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="RoundRobinControl.MatchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RoundRobinControl"
+             mc:Ignorable="d"
+             d:Height="60" d:Width="600">
+    <StackPanel Orientation="Horizontal">
+        <Button Width="120">Win</Button>
+        <TextBlock FontSize="24" Width="100" TextAlignment="Left" Margin="20 0 0 0">Player1</TextBlock>
+        <TextBlock FontSize="24">vs</TextBlock>
+        <TextBlock FontSize="24" Width="100" TextAlignment="Right" Margin="0 0 20 0">Player2</TextBlock>
+        <Button Width="120">Win</Button>
+    </StackPanel>
+</UserControl>
