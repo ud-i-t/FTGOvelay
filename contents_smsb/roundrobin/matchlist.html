@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>対戦表</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <table id="score">
+            <tr>
+                <th></th>
+                <th class="opponent">対戦相手</th>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>D</th>
+                <th>E</th>
+                <th>F</th>
+                <th>G</th>
+                <th>H</th>
+                <th>勝利数</th>
+                <th>順位</th>
+            </tr>
+            <tr>
+                 <td>A</td>
+                 <td class="player">プレイヤーA</td>
+                <td class="nothing">-</td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                <td>2</td>
+                <td>1位</td>
+            </tr>
+            <tr>
+                 <td>B</td>
+                 <td class="player">プレイヤーA</td>
+                 <td> </td>
+                <td class="nothing">-</td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                <td>2</td>
+                <td>2位</td>
+            </tr>
+            <tr>
+                 <td>C</td>
+                 <td class="player">プレイヤーA</td>
+                 <td> </td>
+                 <td> </td>
+                <td class="nothing">-</td>
+                <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                <td>2</td>
+                <td>2位</td>
+            </tr>
+            <tr>
+                 <td>D</td>
+                 <td class="player">プレイヤーA</td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                <td class="nothing">-</td>
+                <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                <td>2</td>
+                <td>2位</td>
+            </tr>
+            <tr>
+                 <td>E</td>
+                 <td class="player">プレイヤーA</td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td class="nothing">-</td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                <td>2</td>
+                <td>2位</td>
+            </tr>
+            <tr>
+                 <td>F</td>
+                 <td class="player">プレイヤーA</td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td class="nothing">-</td>
+                 <td> </td>
+                 <td> </td>
+                <td>2</td>
+                <td>2位</td>
+            </tr>
+            <tr>
+                 <td>G</td>
+                 <td class="player">プレイヤーA</td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td class="nothing">-</td>
+                 <td> </td>
+                <td>2</td>
+                <td>2位</td>
+            </tr>
+            <tr>
+                 <td>H</td>
+                 <td class="player">プレイヤーA</td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td> </td>
+                 <td class="nothing">-</td>
+                <td>2</td>
+                <td>2位</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    readPlayers = async () => {
+        let scoreTable = document.getElementById("score");
+        let trList = scoreTable.getElementsByTagName("tr");
+        {
+            const response = await fetch('results.json');
+            const data = await response.text();
+            const obj = JSON.parse(data);
+
+            for (var match of obj.Results)
+            {
+                if (match.Winner == -1)
+                {
+                    continue;
+                }
+
+                {
+                    let tdList = trList[match.Player1 + 1].getElementsByTagName("td");
+                    let isWinner = match.Winner == 0;
+                    let cell = tdList[match.Player2 + 2];
+                    cell.innerText = isWinner ? "W" : "L";
+                    cell.setAttribute("class", isWinner ? "winner" : "loser");
+
+                }
+                {
+                    let tdList = trList[match.Player2 + 1].getElementsByTagName("td");
+                    let isWinner = match.Winner == 1;
+                    let cell = tdList[match.Player1 + 2];
+                    cell.innerText = isWinner ? "W" : "L";
+                    cell.setAttribute("class", isWinner ? "winner" : "loser");
+                }
+            }
+
+        }
+        {
+            const response = await fetch('playersScore.json');
+            const data = await response.text();
+            const obj = JSON.parse(data);
+
+            let index = 1;
+            for (var player of obj.Scores)
+            {
+                let tdList = trList[index].getElementsByTagName("td");
+                tdList[1].innerText = player.Name;
+                tdList[10].innerText = player.Score;
+                tdList[11].innerText = player.Rank + "位";
+                index++;
+            }
+        }
+    }
+readPlayers()
+</script>
+</html>

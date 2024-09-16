@@ -1,0 +1,172 @@
+﻿*{
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  background-color: #f6f6f9;
+}
+
+body{
+  background-color: #f6f6f9;
+  font-family: "M PLUS 1";
+  font-size: 16px;
+  color: #333;
+}
+
+a:link{
+  text-decoration: none;
+  color: #72640c;
+}
+
+a:visited{
+  text-decoration: none;
+  color: #72640c;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #72640c;
+}
+
+h2{
+  text-align: center;
+  font-family: "M PLUS 1 ExtraBold";
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-size: 48px;
+}
+
+h3{
+  margin-bottom: 8px;
+  color: #666;
+  border-bottom: solid 2px #666;
+}
+
+table#score
+{
+  font-size: 40px;
+  background: #fff;
+  margin: 24px auto 0 auto;
+  padding: 2px;
+}
+
+table#score th
+{
+  padding: 16px;
+  background: #eee;
+  text-align: center;
+}
+
+table#score th.opponent
+{
+  text-align: right;
+}
+
+table#score td
+{
+  min-width: 40px;
+  padding: 16px;
+  background: #ddd;
+  text-align: center;
+}
+
+table#score td.player
+{
+  text-align: left;
+  width: 480px;
+}
+
+table#score td.nothing
+{
+  background: #666;
+}
+
+table#score td.winner
+{
+  background: orange;
+}
+
+table#score td.loser
+{
+  background: #999;
+}
+
+div#wrapper{
+  width: 1920px;
+}
+
+div#content{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 880px;
+}
+
+div.match{
+  flex: 25%;
+  width: 47%;
+}
+
+div.players{
+  display: flex;
+}
+
+div.player{
+  display: block;
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  padding: 12px;
+  background-color: #fff;
+  border: solid 1px #ccc;
+}
+
+div.status{
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 140px;
+  background-color: #ccc;
+  float: left;
+}
+
+div.winner>div.status{
+  background-color: orange;
+}
+
+div.loser>div.status{
+  background-color: #666;
+}
+
+div.winner{
+  background-color: #ffeecc;
+}
+
+div.loser{
+  background-color: #ddd;
+}
+
+div.copy{
+  position: relative;
+  top: 0px;
+  left: 12px;
+  font-size: 24px;
+}
+
+div.playerName{
+  position: relative;
+  top: -4px;
+  left: 10px;
+  font-size: 48px;
+  font-family: "M PLUS 1 ExtraBold";
+}
+
+div.rank{
+  position: relative;
+  top: -4px;
+  left: 12px;
+  font-size: 24px;
+}
