@@ -157,15 +157,22 @@
                     let isWinner = match.Winner == 0;
                     let cell = tdList[match.Player2 + 2];
                     cell.innerText = isWinner ? "W" : "L";
-                    cell.setAttribute("class", isWinner ? "winner" : "loser");
-
+                    cell.classList.add(isWinner ? "winner" : "loser");
+                    if (match.IsLast)
+                    {
+                        cell.classList.add("last");
+                    }
                 }
                 {
                     let tdList = trList[match.Player2 + 1].getElementsByTagName("td");
                     let isWinner = match.Winner == 1;
                     let cell = tdList[match.Player1 + 2];
                     cell.innerText = isWinner ? "W" : "L";
-                    cell.setAttribute("class", isWinner ? "winner" : "loser");
+                    cell.classList.add(isWinner ? "winner" : "loser");
+                    if (match.IsLast)
+                    {
+                        cell.classList.add("last");
+                    }
                 }
             }
 

@@ -92,6 +92,18 @@ table#score td.loser
   background: #999;
 }
 
+table#score td.last
+{
+  outline: solid 4px red;
+  outline-offset: -4px;
+}
+
+table#score td.next
+{
+  outline: solid 4px blue;
+  outline-offset: -4px;
+}
+
 div#wrapper{
   width: 1920px;
 }
