@@ -8,11 +8,6 @@ namespace RoundRobinControl
 {
     internal class RoundRobinMatchResults
     {
-        public RoundRobinRoundResult[] Results { get; set; }
-    }
-
-    internal class RoundRobinRoundResult
-    {
         public RoundRobinMatchResult[] Results { get; set; }
     }
 
@@ -21,5 +16,7 @@ namespace RoundRobinControl
         public int Player1 { get; set; }
         public int Player2 { get; set; }
         public int Winner { get; set; }
+        public bool IsLast { get; set; }
+        public bool IsNext { get; set; }
     }
 }

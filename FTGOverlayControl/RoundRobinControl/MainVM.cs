@@ -73,7 +73,22 @@ namespace RoundRobinControl
         {
             // 全試合結果
             var results = new RoundRobinMatchResults();
-            results.Results = _rounds.Select(x => new RoundRobinRoundResult() { Results = x.MatchViewModels.Select(x => x.ToResult()).ToArray() }).ToArray();
+            results.Results = _rounds.SelectMany(x => x.MatchViewModels.Select(match => match.ToResult())).ToArray();
+            int lastmatch = results.Results.Count(x => x.Winner != -1);
+
+            int matchCountInRound = _rounds.First().MatchViewModels.Count();
+            if (lastmatch > 0)
+            {
+                foreach (var match in results.Results.Skip(lastmatch - matchCountInRound).Take(matchCountInRound))
+                {
+                    match.IsLast = true;
+                }
+            }
+            foreach (var match in results.Results.Skip(lastmatch).Take(matchCountInRound))
+            {
+                match.IsNext = true;
+            }
+
             JsonSettingIO.ToJson("results.json", results);
 
             // プレイヤー成績
