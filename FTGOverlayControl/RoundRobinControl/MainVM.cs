@@ -3,6 +3,7 @@ using FTGOverlayControl.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -142,7 +143,14 @@ namespace RoundRobinControl
         {
             var round = _rounds[_roundIndex];
             string matchListString = round.MatchViewModels.Aggregate("", (string s, MatchViewModel x) => s + x.ToMatchListRow(_players.players));
-            File.WriteAllText("players.txt", matchListString);
+            File.WriteAllText("contents/players.txt", matchListString);
+
+            var app = new ProcessStartInfo();
+            app.FileName = "python";
+            app.Arguments = "makeMatchList.py";
+            app.WorkingDirectory = "contents";
+
+            Process.Start(app);
         }
     }
 
