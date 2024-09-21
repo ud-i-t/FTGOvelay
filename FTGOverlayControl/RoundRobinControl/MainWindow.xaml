@@ -26,6 +26,7 @@
         </ItemsControl>
         <Button HorizontalAlignment="Left" Height="20" Width="100" Command="{Binding OnPreview}">前のマッチ</Button>
         <Button HorizontalAlignment="Right" Height="20" Width="100" Command="{Binding OnNext}">次のマッチ</Button>
-        <Button HorizontalAlignment="Center" Height="20" Width="200" Command="{Binding OnSave}">保存</Button>
+        <Button HorizontalAlignment="Center" Height="20" Width="200" Command="{Binding OnSave}">総当たり表保存</Button>
+        <Button HorizontalAlignment="Center" Height="20" Width="200" Command="{Binding OnExportMatchList}">対戦表出力</Button>
     </StackPanel>
 </Window>

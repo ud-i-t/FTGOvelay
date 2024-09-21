@@ -16,6 +16,8 @@ namespace FTGOverlayControl
         private static SolidColorBrush WinnerColor = new SolidColorBrush(Colors.Orange);
         private static SolidColorBrush LoserColor = new SolidColorBrush(Colors.Gray);
 
+        public int Player1Index => _match.Player1Index;
+        public int Player2Index => _match.Player2Index;
         public string Player1Name => _players.players[_match.Player1Index].name;
         public string Player2Name => _players.players[_match.Player2Index].name;
 

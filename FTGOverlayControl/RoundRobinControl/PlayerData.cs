@@ -14,5 +14,8 @@ namespace FTGOverlayControl
     internal class PlayerData
     {
         public string name { get; set; }
+        public string team { get; set; }
+        public string character { get; set; }
+        public string rank { get; set; }
     }
 }

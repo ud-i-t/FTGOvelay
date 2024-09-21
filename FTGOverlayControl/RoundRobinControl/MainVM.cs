@@ -38,6 +38,7 @@ namespace RoundRobinControl
         public RelayCommand OnNext { get; private set; }
         public RelayCommand OnPreview { get; private set; }
         public RelayCommand OnSave { get; private set; }
+        public RelayCommand OnExportMatchList { get; private set; }
 
         public MainVM()
         {
@@ -62,6 +63,8 @@ namespace RoundRobinControl
             {
                 Save();
             }, _ => true);
+
+            OnExportMatchList = new RelayCommand(_ => ExportMatchList());
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -133,6 +136,30 @@ namespace RoundRobinControl
                     .Aggregate((acc, x) => acc + x);
                 File.WriteAllText("summary.txt", summary);
             }
+        }
+
+        private void ExportMatchList()
+        {
+            var round = _rounds[_roundIndex];
+            string matchListString = round.MatchViewModels.Aggregate("", (string s, MatchViewModel x) => s + x.ToMatchListRow(_players.players));
+            File.WriteAllText("players.txt", matchListString);
+        }
+    }
+
+    static class MatchViewModelExtentions
+    {
+        public static string ToMatchListRow(this MatchViewModel match, PlayerData[] players)
+        {
+            var p1 = players[match.Player1Index];
+            var p2 = players[match.Player2Index];
+            string p1Win = "";
+            string p2Win = "";
+            if (match.IsDone())
+            {
+                p1Win = match.IsWinner(0) ? "W" : "L";
+                p2Win = match.IsWinner(1) ? "L" : "W";
+            }
+            return $"{p1Win},{p1.name},{p1.team},{p1.character},{p1.rank}\n{p2Win},{p2.name},{p2.team},{p2.character},{p2.rank}\n";
         }
     }
 }
