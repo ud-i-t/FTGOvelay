@@ -28,5 +28,6 @@
         <Button HorizontalAlignment="Right" Height="20" Width="100" Command="{Binding OnNext}">次のマッチ</Button>
         <Button HorizontalAlignment="Center" Height="20" Width="200" Command="{Binding OnSave}">総当たり表保存</Button>
         <Button HorizontalAlignment="Center" Height="20" Width="200" Command="{Binding OnExportMatchList}">対戦表出力</Button>
+        <TextBox Height="120" AcceptsReturn="True" IsReadOnly="True" Text="{Binding Announce, Mode=OneWay}"></TextBox>
     </StackPanel>
 </Window>
