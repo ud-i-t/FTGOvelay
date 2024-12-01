@@ -44,17 +44,6 @@ namespace FTGOverlayControl
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _centerTopText = string.Empty;
-        public string CenterTopText
-        {
-            get { return _centerTopText; }
-            set
-            {
-                _centerTopText = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CenterTopText)));
-            }
-        }
-
         public string CenterBottomText { get; set; }
 
         private KeyboardHook hook = new KeyboardHook();
@@ -107,7 +96,6 @@ namespace FTGOverlayControl
 
             var players = JsonSettingIO.Read<PlayerDatas>(PlayerFileName);
             var setting = JsonSettingIO.Read<OverlaySetting>(SettingFileName);
-            CenterTopText = setting.centerTopText;
             Player1 = new PlayerViewModel(new PlayerSetting() { Score = setting.score1, TeamScore = setting.teamScore1 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
             Player2 = new PlayerViewModel(new PlayerSetting() { Score = setting.score2, TeamScore = setting.teamScore2 }, UpdateScreen, players.players.Select(x => new Model.PlayerModel() { Name = x.name }));
 
@@ -139,14 +127,11 @@ namespace FTGOverlayControl
 
             Player1.Score = 0;
             Player2.Score = 0;
-
-            CenterTopText = currentMatch.CenterText;
         }
 
         private void UpdateScreen()
         {
             var setting = new OverlaySetting();
-            setting.centerTopText = CenterTopText;
             setting.player1 = Player1.SelectedIndex;
             setting.player2 = Player2.SelectedIndex;
             setting.score1 = Player1.Score;
