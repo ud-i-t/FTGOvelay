@@ -46,6 +46,7 @@ try
                     ".png" => "image/png",
                     ".js" => "text/javascript",
                     ".json" => "application/json",
+                    ".txt" => "text/plain",
                     _ => string.Empty
                 };
 
