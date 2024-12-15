@@ -9,24 +9,11 @@
     <Window.DataContext>
         <local:MainVm></local:MainVm>
     </Window.DataContext>
-    <Window.InputBindings>
-        <!--<KeyBinding Key="D1" Modifiers="" Command="{Binding AddScore1}"></KeyBinding>
-        <KeyBinding Key="D2" Modifiers="" Command="{Binding AddScore2}"></KeyBinding>-->
-    </Window.InputBindings>
     <Grid>
         <StackPanel Orientation="Vertical">
-            <!--<StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                <TextBlock Width="100">Center Top Text:</TextBlock>
-                <TextBox x:Name="CenterTopInput" Width="180" Text="{Binding CenterTopText}"></TextBox>
-            </StackPanel>-->
-            <!--<StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                <TextBlock Width="100">Center Bottom Text:</TextBlock>
-                <TextBox x:Name="CenterBottomInput" Width="180" Text="{Binding CenterBottomText}"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10,0,10,10">
-                <TextBlock Width="100">Match point:</TextBlock>
-                <TextBox x:Name="MatchPointInput" Width="180"></TextBox>
-            </StackPanel>-->
+            <Menu>
+                <MenuItem Header="チーム設定" Click="MenuItem_Click"></MenuItem>
+            </Menu>
             <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
                 <GroupBox Header="Player1">
                     <StackPanel Orientation="Vertical">

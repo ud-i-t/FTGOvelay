@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FTGOverlayControl.Model
 {
-    internal class PlayerModel
+    public class PlayerModel
     {
+        public string Position { get; } = "先鋒";
         public string Name { get; set; }
         public int Score { get; set; }
 

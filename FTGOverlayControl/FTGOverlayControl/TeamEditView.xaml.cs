@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace FTGOverlayControl
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// TeamEditView.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TeamEditView : Window
     {
-        public MainWindow()
+        public TeamEditView()
         {
             InitializeComponent();
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new TeamEditView();
-            window.ShowDialog();
         }
     }
 }
