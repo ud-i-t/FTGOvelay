@@ -6,15 +6,17 @@
         xmlns:local="clr-namespace:FTGOverlayControl"
         mc:Ignorable="d"
         Title="TeamEditView" Height="800" Width="640">
-    <Window.DataContext>
-        <local:TeamEditVm></local:TeamEditVm>
-    </Window.DataContext>
     <StackPanel>
-        <ComboBox>
-            <ComboBoxItem>Aチーム</ComboBoxItem>
-            <ComboBoxItem>Bチーム</ComboBoxItem>
-        </ComboBox>
-        <ListView ItemsSource="{Binding Players}">
-        </ListView>
+        <ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding CurrentTeam}" DisplayMemberPath="Name"></ComboBox>
+        <ItemsControl ItemsSource="{Binding CurrentTeam.Players}" IsTabStop="False">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="100">ポジション名</TextBlock>
+                        <TextBox Width="200" Text="{Binding Name}"></TextBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </StackPanel>
 </Window>

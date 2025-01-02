@@ -42,7 +42,8 @@ namespace FTGOverlayControl
         {
             ChangePlayerCount = new RelayCommand(_ =>
             {
-                if (PlayerCount > _positions.Count)
+                int toAdd = PlayerCount - _positions.Count;
+                for (int i = 0; i < toAdd; i++)
                 {
                     AddPlayer();
                 }

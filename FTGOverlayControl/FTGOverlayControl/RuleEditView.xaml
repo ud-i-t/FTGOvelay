@@ -12,8 +12,8 @@
             <TextBox Width="50" Text="{Binding PlayerCount}"></TextBox>
             <Button Padding="10 5" Command="{Binding ChangePlayerCount}">人数変更を反映</Button>
         </StackPanel>
-        <ListView ItemsSource="{Binding Positions}" ItemContainerStyle="{StaticResource ContainerStyle}" SelectionMode="Single">
-            <ListView.ItemTemplate>
+        <ItemsControl ItemsSource="{Binding Positions}" IsTabStop="False">
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="50" Text="{Binding Index}"></TextBlock>
@@ -23,8 +23,8 @@
                         <TextBox Width="50" Text="{Binding MatchCount}"></TextBox>
                     </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <!--<StackPanel Orientation="Horizontal">
             <TextBlock Width="150">1st</TextBlock>
             <TextBlock Width="150">ポジション名</TextBlock>
