@@ -35,7 +35,9 @@ namespace FTGOverlayControl
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             var window = new TeamEditView();
-            window.DataContext = (DataContext as MainVm).TeamVm;
+            var vm = DataContext as MainVm;
+            vm.TeamVm.OnStart();
+            window.DataContext = vm.TeamVm;
             window.ShowDialog();
         }
     }

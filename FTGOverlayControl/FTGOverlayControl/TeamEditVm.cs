@@ -10,6 +10,8 @@ namespace FTGOverlayControl
 {
     public class TeamEditVm : INotifyPropertyChanged
     {
+        private Rule _rule;
+
         private TeamModel _currentTeam;
         public TeamModel CurrentTeam
         {
@@ -21,7 +23,10 @@ namespace FTGOverlayControl
             }
         }
 
-        public ObservableCollection<TeamModel> Teams { get; set; } = new ObservableCollection<TeamModel>() {
+        public IEnumerable<PlayerModel> CurrentPlayers => _currentTeam.Players.Take(_rule.PlayerCount);
+
+        public ObservableCollection<TeamModel> Teams { get; set; } = new ObservableCollection<TeamModel>()
+        {
             new TeamModel()
             {
                 Name = "Aチーム",
@@ -44,9 +49,22 @@ namespace FTGOverlayControl
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public TeamEditVm()
+        public TeamEditVm(Rule ruleModel)
         {
+            _rule = ruleModel;
             _currentTeam = Teams.First();
+        }
+
+        public void OnStart()
+        {
+            foreach(var t in Teams)
+            {
+                int toAdd = _rule.PlayerCount - t.Players.Count;
+                for (int i = 0; i < toAdd; i++)
+                {
+                    t.Players.Add(new PlayerModel());
+                }
+            }
         }
     }
 }

@@ -39,7 +39,7 @@ namespace FTGOverlayControl
         public MainVm()
         {
             RuleVm = new RuleEditVm(_ruleModel);
-            TeamVm = new TeamEditVm();
+            TeamVm = new TeamEditVm(_ruleModel);
 
             //hook.KeyDownEvent += (sender, e) =>
             //{

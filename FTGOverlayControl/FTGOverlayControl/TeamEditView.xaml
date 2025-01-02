@@ -8,7 +8,7 @@
         Title="TeamEditView" Height="800" Width="640">
     <StackPanel>
         <ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding CurrentTeam}" DisplayMemberPath="Name"></ComboBox>
-        <ItemsControl ItemsSource="{Binding CurrentTeam.Players}" IsTabStop="False">
+        <ItemsControl ItemsSource="{Binding CurrentPlayers}" IsTabStop="False">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
