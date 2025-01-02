@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FTGOverlayControl.Model
 {
-    class Position
+    public  class Position
     {
         public string Index { get; set; }
         public string Name { get; set; }

@@ -11,45 +11,41 @@ namespace FTGOverlayControl
 {
     class RuleEditVm : INotifyPropertyChanged
     {
+        private Rule _model;
+
         public ObservableCollection<Position> Positions { get; } = new ObservableCollection<Position>();
-        private List<Position> _positions { get; } = new List<Position>
-        {
-            new Position(){ Index = "#1", Name = "先鋒" },
-            new Position(){ Index = "#2", Name = "次鋒" },
-            new Position(){ Index = "#3", Name = "中堅" },
-            new Position(){ Index = "#4", Name = "副将" },
-            new Position(){ Index = "#5", Name = "大将" },
-        };
+        
         public RelayCommand ChangePlayerCount { get; private set; }
 
-        private int _playerCount = 5;
         public int PlayerCount 
         { 
             get
             {
-                return _playerCount;
+                return _model.PlayerCount;
             }
             set
             {
-                _playerCount = value;
+                _model.PlayerCount = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PlayerCount)));
             }
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public RuleEditVm()
+        public RuleEditVm(Rule model)
         {
+            _model = model;
+
             ChangePlayerCount = new RelayCommand(_ =>
             {
-                int toAdd = PlayerCount - _positions.Count;
+                int toAdd = PlayerCount - _model.Positions.Count;
                 for (int i = 0; i < toAdd; i++)
                 {
                     AddPlayer();
                 }
 
                 Positions.Clear();
-                foreach (var p in _positions.Take(PlayerCount))
+                foreach (var p in _model.Positions.Take(PlayerCount))
                 {
                     Positions.Add(p);
                 }
@@ -60,7 +56,7 @@ namespace FTGOverlayControl
 
         private void AddPlayer()
         {
-            _positions.Add(new Position() { Index = $"#{_positions.Count + 1}" });
+            _model.Positions.Add(new Position() { Index = $"#{_model.Positions.Count + 1}" });
         }
     }
 }

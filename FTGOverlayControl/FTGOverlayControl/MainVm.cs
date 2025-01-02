@@ -17,8 +17,9 @@ namespace FTGOverlayControl
     {
         private static string SettingFileName = "contents/score.json";
 
-        public RuleEditVm RuleVm { get; } = new RuleEditVm();
-        public TeamEditVm TeamVm { get; } = new TeamEditVm();
+        private Rule _ruleModel = new Rule();
+        public RuleEditVm RuleVm { get; }
+        public TeamEditVm TeamVm { get; }
 
         public PlayerViewModel Player1 { get; }
         public PlayerViewModel Player2 { get; }
@@ -37,6 +38,9 @@ namespace FTGOverlayControl
 
         public MainVm()
         {
+            RuleVm = new RuleEditVm(_ruleModel);
+            TeamVm = new TeamEditVm();
+
             //hook.KeyDownEvent += (sender, e) =>
             //{
             //    if (e.KeyCode == 0x30)
