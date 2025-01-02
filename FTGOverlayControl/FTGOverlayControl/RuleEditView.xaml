@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FTGOverlayControl"
         mc:Ignorable="d"
-        Title="RuleEditView" Height="800" Width="640">
+        Title="大会設定" Height="800" Width="640">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Width="150">チーム人数</TextBlock>
-            <TextBox Width="50"></TextBox>
-            <Button Padding="10 5">人数変更を反映</Button>
+            <TextBox Width="50" Text="{Binding PlayerCount}"></TextBox>
+            <Button Padding="10 5" Command="{Binding ChangePlayerCount}">人数変更を反映</Button>
         </StackPanel>
         <ListView ItemsSource="{Binding Positions}" ItemContainerStyle="{StaticResource ContainerStyle}" SelectionMode="Single">
             <ListView.ItemTemplate>
