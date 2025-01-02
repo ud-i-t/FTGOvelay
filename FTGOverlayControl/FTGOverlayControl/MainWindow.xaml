@@ -12,6 +12,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <Menu>
+                <MenuItem Header="大会設定" Click="RuleMenu_Click"></MenuItem>
                 <MenuItem Header="チーム設定" Click="MenuItem_Click"></MenuItem>
             </Menu>
             <StackPanel Orientation="Horizontal" Margin="10,10,10,10">

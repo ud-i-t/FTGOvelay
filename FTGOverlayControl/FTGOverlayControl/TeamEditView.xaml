@@ -11,8 +11,8 @@
     </Window.DataContext>
     <StackPanel>
         <ComboBox>
-            <ComboBoxItem>aaa</ComboBoxItem>
-            <ComboBoxItem>bbb</ComboBoxItem>
+            <ComboBoxItem>Aチーム</ComboBoxItem>
+            <ComboBoxItem>Bチーム</ComboBoxItem>
         </ComboBox>
         <ListView ItemsSource="{Binding Players}">
         </ListView>

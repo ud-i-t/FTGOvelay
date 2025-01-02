@@ -25,6 +25,12 @@ namespace FTGOverlayControl
             InitializeComponent();
         }
 
+        private void RuleMenu_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new RuleEditView();
+            window.ShowDialog();
+        }
+
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             var window = new TeamEditView();
