@@ -17,6 +17,9 @@ namespace FTGOverlayControl
     {
         private static string SettingFileName = "contents/score.json";
 
+        public RuleEditVm RuleVm { get; } = new RuleEditVm();
+        public TeamEditVm TeamVm { get; } = new TeamEditVm();
+
         public PlayerViewModel Player1 { get; }
         public PlayerViewModel Player2 { get; }
         public RelayCommand ResetScore { get; private set; }
@@ -34,25 +37,25 @@ namespace FTGOverlayControl
 
         public MainVm()
         {
-            hook.KeyDownEvent += (sender, e) =>
-            {
-                if (e.KeyCode == 0x30)
-                {
-                    Player1.Score = 0;
-                    Player2.Score = 0;
-                    UpdateScreen();
-                }
-                if (e.KeyCode == 0x31)
-                {
-                    Player1.Score++;
-                    UpdateScreen();
-                }
-                if (e.KeyCode == 0x32)
-                {
-                    Player2.Score++;
-                    UpdateScreen();
-                }
-            };
+            //hook.KeyDownEvent += (sender, e) =>
+            //{
+            //    if (e.KeyCode == 0x30)
+            //    {
+            //        Player1.Score = 0;
+            //        Player2.Score = 0;
+            //        UpdateScreen();
+            //    }
+            //    if (e.KeyCode == 0x31)
+            //    {
+            //        Player1.Score++;
+            //        UpdateScreen();
+            //    }
+            //    if (e.KeyCode == 0x32)
+            //    {
+            //        Player2.Score++;
+            //        UpdateScreen();
+            //    }
+            //};
             hook.Hook();
 
             ResetScore = new RelayCommand(_ =>

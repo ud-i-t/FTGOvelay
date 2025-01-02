@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:FTGOverlayControl"
         mc:Ignorable="d"
         Title="RuleEditView" Height="800" Width="640">
-    <Window.DataContext>
-        <local:RuleEditVm></local:RuleEditVm>
-    </Window.DataContext>
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Width="150">チーム人数</TextBlock>
@@ -19,10 +16,10 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="150" Text="{Binding Index}"></TextBlock>
-                        <TextBlock Width="150">ポジション名</TextBlock>
-                        <TextBox Width="50" Text="{Binding Name}"></TextBox>
-                        <TextBlock Width="150">セット数(BO)</TextBlock>
+                        <TextBlock Width="50" Text="{Binding Index}"></TextBlock>
+                        <TextBlock Width="100">ポジション名</TextBlock>
+                        <TextBox Width="200" Text="{Binding Name}"></TextBox>
+                        <TextBlock Width="100">セット数(BO)</TextBlock>
                         <TextBox Width="50" Text="{Binding MatchCount}"></TextBox>
                     </StackPanel>
                 </DataTemplate>

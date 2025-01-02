@@ -28,6 +28,7 @@ namespace FTGOverlayControl
         private void RuleMenu_Click(object sender, RoutedEventArgs e)
         {
             var window = new RuleEditView();
+            window.DataContext = (DataContext as MainVm).RuleVm;
             window.ShowDialog();
         }
 
