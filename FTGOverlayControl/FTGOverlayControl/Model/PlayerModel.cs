@@ -12,6 +12,11 @@ namespace FTGOverlayControl.Model
         public string Name { get; set; }
         public int Score { get; set; }
 
+        public PlayerModel(string position) 
+        {
+            Position = position;
+        }
+
         public override string ToString()
         {
             return Name;

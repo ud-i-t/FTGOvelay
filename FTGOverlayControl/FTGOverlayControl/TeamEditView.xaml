@@ -5,14 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FTGOverlayControl"
         mc:Ignorable="d"
-        Title="TeamEditView" Height="800" Width="640">
+        Title="チーム設定" Height="640" Width="480" ResizeMode="NoResize">
     <StackPanel>
-        <ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding CurrentTeam}" DisplayMemberPath="Name"></ComboBox>
+        <StackPanel Orientation="Horizontal">
+            <ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding CurrentTeam}" DisplayMemberPath="Name" 
+                      Width="380">
+            </ComboBox>
+            <Button Padding="10 0" Width="40" Command="{Binding AddTeamCommand}">+</Button>
+            <Button Padding="10 0" Width="40" Command="{Binding RemoveTeamCommand}">-</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>チーム名</TextBlock>
+            <TextBox Width="400" Text="{Binding CurrentTeam.Name}"></TextBox>
+        </StackPanel>
         <ItemsControl ItemsSource="{Binding CurrentPlayers}" IsTabStop="False">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="100">ポジション名</TextBlock>
+                        <TextBlock Width="100" Text="{Binding Position}"></TextBlock>
                         <TextBox Width="200" Text="{Binding Name}"></TextBox>
                     </StackPanel>
                 </DataTemplate>

@@ -17,9 +17,11 @@ namespace FTGOverlayControl
         {
             get { return _currentTeam; }
             set 
-            { 
+            {
+                if (value == null) return;
                 _currentTeam = value; 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentTeam)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentPlayers)));
             }
         }
 
@@ -29,23 +31,16 @@ namespace FTGOverlayControl
         {
             new TeamModel()
             {
-                Name = "Aチーム",
-                Players = new List<PlayerModel>()
-                {
-                    new PlayerModel(){ Name = "aaa" },
-                    new PlayerModel(){ Name = "bbb" },
-                }
+                Name = "Aチーム"
             },
             new TeamModel()
             {
-                Name = "Bチーム",
-                Players = new List<PlayerModel>()
-                {
-                    new PlayerModel(){ Name = "ccc" },
-                    new PlayerModel(){ Name = "ddd" },
-                }
+                Name = "Bチーム"
             }
         };
+
+        public RelayCommand AddTeamCommand { get; private set; }
+        public RelayCommand RemoveTeamCommand { get; private set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -53,18 +48,39 @@ namespace FTGOverlayControl
         {
             _rule = ruleModel;
             _currentTeam = Teams.First();
+
+            AddTeamCommand = new RelayCommand(_ => AddTeam());
+            RemoveTeamCommand = new RelayCommand(_ => RemoveTeam(), _ => Teams.Count > 0);
         }
 
         public void OnStart()
         {
             foreach(var t in Teams)
             {
-                int toAdd = _rule.PlayerCount - t.Players.Count;
-                for (int i = 0; i < toAdd; i++)
-                {
-                    t.Players.Add(new PlayerModel());
-                }
+                FillPlayers(t);
             }
+        }
+
+        private void FillPlayers(TeamModel team)
+        {
+            int toAdd = _rule.PlayerCount - team.Players.Count;
+            for (int i = 0; i < toAdd; i++)
+            {
+                team.Players.Add(new PlayerModel(_rule.Positions[i].Name));
+            }
+        }
+
+        private void AddTeam()
+        {
+            Teams.Add(new TeamModel() { Name = "新規チーム" });
+            FillPlayers(Teams.Last());
+            CurrentTeam = Teams.Last();
+        }
+
+        private void RemoveTeam()
+        {
+            Teams.Remove(CurrentTeam);
+            CurrentTeam = Teams.Last();
         }
     }
 }
