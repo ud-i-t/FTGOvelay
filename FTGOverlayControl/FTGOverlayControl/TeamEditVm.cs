@@ -50,7 +50,7 @@ namespace FTGOverlayControl
             _currentTeam = Teams.First();
 
             AddTeamCommand = new RelayCommand(_ => AddTeam());
-            RemoveTeamCommand = new RelayCommand(_ => RemoveTeam(), _ => Teams.Count > 0);
+            RemoveTeamCommand = new RelayCommand(_ => RemoveTeam(), _ => Teams.Count >= 2);
         }
 
         public void OnStart()

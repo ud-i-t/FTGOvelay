@@ -16,16 +16,21 @@
                 <MenuItem Header="チーム設定" Click="MenuItem_Click"></MenuItem>
             </Menu>
             <StackPanel Orientation="Horizontal" Margin="10,10,10,10">
-                <GroupBox Header="Player1">
+                <GroupBox Header="Team1">
                     <StackPanel Orientation="Vertical">
-                        <local:PlayerView DataContext="{Binding Player1}"></local:PlayerView>
+                        <ComboBox ItemsSource="{Binding TeamVm.Teams}" 
+                                  SelectedItem="{Binding Team1}"
+                                  DisplayMemberPath="Name"></ComboBox>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Player2">
+                <GroupBox Header="Team2">
                     <StackPanel Orientation="Vertical">
-                        <local:PlayerView DataContext="{Binding Player2}"></local:PlayerView>
+                        <ComboBox ItemsSource="{Binding TeamVm.Teams}" 
+                                  SelectedItem="{Binding Team2}"
+                                  DisplayMemberPath="Name"></ComboBox>
                     </StackPanel>
                 </GroupBox>
+                <Button Command="{Binding BeginFightingCommand}">試合開始</Button>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">

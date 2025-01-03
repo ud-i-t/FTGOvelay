@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FTGOverlayControl.Model;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +10,18 @@ namespace FTGOverlayControl
 {
     internal class MatchViewModel
     {
-        private Model.Match _match;
-        private PlayerDatas _players;
+        private PlayerModel _player1;
+        private PlayerModel _player2;
 
-        public MatchViewModel(Model.Match match, PlayerDatas player) 
+        public MatchViewModel(PlayerModel player1, PlayerModel player2) 
         { 
-            _match = match;
-            _players = player;
+            _player1 = player1;
+            _player2 = player2;
         }
 
         public override string ToString()
         {
-            return $"{_match.CenterText} {_players.players[_match.Player1Index].name} vs {_players.players[_match.Player2Index].name}";
+            return $"{_player1.Name} vs {_player2.Name}";
         }
     }
 }
